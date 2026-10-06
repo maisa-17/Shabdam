@@ -2,14 +2,29 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AudioWaveform, Baby, Ear, Headphones, MessagesSquare, Moon, ShieldCheck, Stethoscope, Wrench, type LucideIcon } from "lucide-react";
+import { GradientCard, type CardGradient } from "@/components/ui/gradient-card";
 import CtaBanner from "@/components/CtaBanner";
 import FaqList from "@/components/FaqList";
 import PageHero from "@/components/PageHero";
-import ShortPlayer from "@/components/ShortPlayer";
 import { Button, Container, Eyebrow, Heading, Placeholder } from "@/components/ui";
 import { categoryHref, getCategory, pageCategories } from "@/lib/services";
-import { byTopic } from "@/lib/videos";
 import { photos } from "@/lib/photos";
+
+// Decorative corner icon for each service's "What we offer" cards.
+const serviceIcons: Record<string, LucideIcon> = {
+  "hearing-tests": Ear,
+  "hearing-aid-fitting": Headphones,
+  "repair-maintenance": Wrench,
+  tinnitus: AudioWaveform,
+  pediatric: Baby,
+  "speech-therapy": MessagesSquare,
+  "snoring-sleep-apnea": Moon,
+  "ear-protection": ShieldCheck,
+  "ear-care": Stethoscope,
+};
+const cardGradients: CardGradient[] = ["rose", "sand", "blush", "peach"];
+const badgeColors = ["#E3000F", "#C4000D", "#FF6B74", "#7A1820"];
 
 export function generateStaticParams() {
   return pageCategories.map((c) => ({ slug: c.slug }));
@@ -28,13 +43,11 @@ export default async function ServiceCategoryPage(props: PageProps<"/services/[s
   const c = getCategory(slug);
   if (!c) notFound();
 
-  const videos = c.videoTopics ? byTopic(...c.videoTopics) : [];
   const others = pageCategories.filter((o) => o.slug !== c.slug).slice(0, 4);
 
   return (
     <>
       <PageHero
-        crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: c.title }]}
         eyebrow={`Service ${c.num}`}
         title={c.title}
         intro={c.intro}
@@ -115,37 +128,28 @@ export default async function ServiceCategoryPage(props: PageProps<"/services/[s
             <Eyebrow>What we offer</Eyebrow>
             <Heading>{c.subs.length} services under {c.title}</Heading>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {c.subs.map((s) => (
-              <div id={s.slug} key={s.slug} className="flex scroll-mt-32 flex-col gap-2 rounded-[20px] border border-line bg-cream p-6 target:border-brand target:bg-brand-soft">
-                <span className="text-lg font-bold">{s.name}</span>
-                <span className="text-[15px] leading-relaxed text-ink-3">{s.desc}</span>
-              </div>
-            ))}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {c.subs.map((s, i) => {
+              const Icon = serviceIcons[c.slug] ?? Ear;
+              return (
+                <GradientCard
+                  key={s.slug}
+                  id={s.slug}
+                  className="scroll-mt-32 target:ring-2 target:ring-brand"
+                  gradient={cardGradients[i % cardGradients.length]}
+                  badgeText={`${c.num} · ${String(i + 1).padStart(2, "0")}`}
+                  badgeColor={badgeColors[i % badgeColors.length]}
+                  title={s.name}
+                  description={s.desc}
+                  ctaText="Book this service"
+                  ctaHref="/book-appointment"
+                  icon={<Icon strokeWidth={1.5} />}
+                />
+              );
+            })}
           </div>
         </Container>
       </section>
-
-      {/* Visit steps */}
-      {c.steps && (
-        <section className="bg-maroon py-16 text-white md:py-24">
-          <Container className="flex flex-col gap-12">
-            <div className="flex max-w-[760px] flex-col gap-4">
-              <Eyebrow dark>Your visit</Eyebrow>
-              <Heading className="text-white">What to expect, step by step</Heading>
-            </div>
-            <ol className={`grid gap-8 sm:grid-cols-2 lg:gap-6 ${c.steps.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
-              {c.steps.map((st, i) => (
-                <li key={st.title} className="flex flex-col gap-3 border-t-2 border-maroon-line pt-5">
-                  <span className="font-display text-4xl text-blush">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="text-xl font-bold">{st.title}</span>
-                  <span className="text-base leading-normal text-blush-soft">{st.desc}</span>
-                </li>
-              ))}
-            </ol>
-          </Container>
-        </section>
-      )}
 
       {/* FAQs */}
       {c.faqs && (
@@ -157,26 +161,6 @@ export default async function ServiceCategoryPage(props: PageProps<"/services/[s
               <p className="text-base leading-relaxed text-ink-3">Can&apos;t find your answer? Call any branch or message us on WhatsApp.</p>
             </div>
             <FaqList faqs={c.faqs} />
-          </Container>
-        </section>
-      )}
-
-      {/* Related videos */}
-      {videos.length > 0 && (
-        <section className="bg-white py-16 md:py-24">
-          <Container className="flex flex-col gap-10">
-            <div className="flex flex-col gap-4">
-              <Eyebrow>Watch</Eyebrow>
-              <Heading>Short videos from our team</Heading>
-            </div>
-            <div className="flex snap-x gap-5 overflow-x-auto pb-2 [scrollbar-width:none]">
-              {videos.map((v) => (
-                <div key={v.id} className="flex w-[220px] shrink-0 snap-start flex-col gap-2.5">
-                  <ShortPlayer video={v} />
-                  <span className="text-base leading-snug font-semibold">{v.title}</span>
-                </div>
-              ))}
-            </div>
           </Container>
         </section>
       )}

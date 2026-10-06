@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import PageHero from "@/components/PageHero";
-import { Button, Container } from "@/components/ui";
+import { Container } from "@/components/ui";
 import { categories, categoryHref, subHref } from "@/lib/services";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Our Services",
@@ -15,36 +16,25 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
         eyebrow="Our services"
         title="11 specialities, one clinical standard."
         intro="Choose a service to see what it involves, who it helps and what to expect at your visit."
-      >
-        <Button href="/book-appointment">Not sure? Book a hearing test</Button>
-      </PageHero>
-
-      {/* Quick jump */}
-      <nav aria-label="Service categories" className="sticky top-20 z-30 border-b border-line bg-cream/95 backdrop-blur md:top-24">
-        <Container className="flex gap-2 overflow-x-auto py-3 [scrollbar-width:none]">
-          {categories.map((c) => (
-            <a
-              key={c.slug}
-              href={`#${c.slug}`}
-              className="shrink-0 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold whitespace-nowrap text-ink hover:border-brand-dark hover:text-brand-dark"
-            >
-              {c.title}
-            </a>
-          ))}
-        </Container>
-      </nav>
+      />
 
       <section className="py-14 md:py-20">
-        <Container className="grid gap-6 md:grid-cols-2">
+        {/* Hover-reveal grid: hovering one card de-emphasises the others (adapted from the hover-reveal cards component). */}
+        <Container className="group/cards grid gap-6 md:grid-cols-2">
           {categories.map((c) => (
             <article
               id={c.slug}
               key={c.slug}
-              className="flex scroll-mt-48 flex-col gap-5 rounded-[22px] border border-line bg-white p-6 shadow-card md:p-8"
+              className={cn(
+                "relative flex scroll-mt-28 flex-col gap-5 rounded-[22px] border border-line bg-white p-6 shadow-card md:p-8",
+                "transition-all duration-500 ease-in-out motion-reduce:transition-none",
+                "group-hover/cards:scale-[0.97] group-hover/cards:opacity-60 group-hover/cards:blur-[2px]",
+                "hover:z-10 hover:scale-[1.03]! hover:opacity-100! hover:blur-none! hover:shadow-[0_24px_60px_rgba(31,26,27,0.14)]",
+                "focus-within:z-10 focus-within:scale-[1.03]! focus-within:opacity-100! focus-within:blur-none!"
+              )}
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex flex-col gap-2">

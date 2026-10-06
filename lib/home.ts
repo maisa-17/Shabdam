@@ -20,8 +20,20 @@ export const featuredServices: Feature[] = [
   { title: "Hearing Aids & Fitting", desc: "Free trial, precise programming and real-ear verified fitting.", img: "Photo · hearing aid fitting", href: "/services/hearing-aid-fitting", photo: "fitting" },
   { title: "Children's Hearing & Speech", desc: "Newborn screening, pediatric fitting and family counselling.", img: "Photo · child with audiologist", href: "/services/pediatric", photo: "child" },
   { title: "Speech Therapy", desc: "Articulation, fluency and voice therapy for children and adults.", img: "Photo · speech therapy session", href: "/services/speech-therapy", photo: "speech" },
-  { title: "Tinnitus Management", desc: "Assessment, sound therapy and counselling for ringing ears.", img: "Photo · tinnitus counselling", href: "/services/tinnitus" },
-  { title: "Repair & Maintenance", desc: "Cleaning, reprogramming, firmware updates and batteries.", img: "Photo · hearing aid repair", href: "/services/repair-maintenance" },
+  { title: "Tinnitus Management", desc: "Assessment, sound therapy and counselling for ringing ears.", img: "Photo · tinnitus counselling", href: "/services/tinnitus", photo: "tinnitus" },
+  { title: "Repair & Maintenance", desc: "Cleaning, reprogramming, firmware updates and batteries.", img: "Photo · hearing aid repair", href: "/services/repair-maintenance", photo: "repair" },
+];
+
+// Brand tiles in the logo marquee. Add `src: "/brands/<name>.svg"` once official logos are supplied;
+// until then the brand name is shown as a wordmark. Gradients are approximate brand colours shown on hover.
+export const brandLogos = [
+  { alt: "Phonak", src: "/brands/phonak.svg", gradient: { from: "#E6F4CC", via: "#B8DE6E", to: "#8CC21F" } },
+  { alt: "ReSound", src: "/brands/resound.svg", gradient: { from: "#F8D7DC", via: "#E07A8A", to: "#A6192E" } },
+  { alt: "Oticon", src: "/brands/oticon.svg", gradient: { from: "#FBE3F1", via: "#EC9BCB", to: "#C8118C" } },
+  { alt: "Widex", src: "/brands/widex.svg", gradient: { from: "#F4F4F4", via: "#D6D6D6", to: "#9A9A9A" } },
+  { alt: "Unitron", src: "/brands/unitron.svg", gradient: { from: "#E0F6FE", via: "#9EDDF7", to: "#00AEEF" } },
+  { alt: "Rexton", src: "/brands/rexton.svg", gradient: { from: "#FFF7B3", via: "#FFEC4D", to: "#FFE500" } },
+  { alt: "Signia", src: "/brands/signia.svg", gradient: { from: "#FFE0E0", via: "#FF8080", to: "#FF0000" } },
 ];
 
 // The 5-step patient process.

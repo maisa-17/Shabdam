@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440">
+  <defs>
+    <clipPath id="x-clip"><rect x="770" y="100" width="260" height="168"/></clipPath>
+  </defs>
+  <g fill="#111111">
+    <!-- Badge with the "W" knocked out in white -->
+    <rect x="18" y="50" width="267" height="268" rx="72"/>
+    <!-- "IDEX" -->
+    <rect x="310" y="100" width="56" height="168" rx="8"/>
+    <path fill-rule="evenodd" d="M392 100H495A80 84 0 0 1 575 184A80 84 0 0 1 495 268H392Z
+                                 M448 150H488A32 34 0 0 1 520 184A32 34 0 0 1 488 218H448Z"/>
+    <rect x="600" y="100" width="56" height="168" rx="8"/>
+    <rect x="600" y="100" width="160" height="48" rx="8"/>
+    <rect x="600" y="160" width="148" height="48" rx="8"/>
+    <rect x="600" y="220" width="160" height="48" rx="8"/>
+  </g>
+  <g stroke="#111111" stroke-width="62" clip-path="url(#x-clip)">
+    <path d="M790 80L1010 288M1010 80L790 288"/>
+  </g>
+  <path fill="#ffffff" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"
+        d="M68 100H122L139 205L150 155H176L187 205L204 100H258L228 270H174L163 228L152 270H98Z"/>
+  <!-- Registered mark -->
+  <circle cx="1048" cy="106" r="18" fill="none" stroke="#111111" stroke-width="4"/>
+  <text x="1048" y="115" text-anchor="middle" fill="#111111" font-family="Arial, sans-serif" font-weight="700" font-size="24">R</text>
+  <text x="35" y="402" textLength="965" lengthAdjust="spacing" fill="#111111"
+        font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="52">HIGH DEFINITION HEARING</text>
+</svg>

@@ -130,6 +130,7 @@ export const categories: ServiceCategory[] = [
     short: "Cleaning, reprogramming, firmware updates and batteries.",
     intro: "Keep your hearing aids working like new. We clean, service and repair hearing aids, and help with batteries, domes and accessories.",
     imageLabel: "Photo · hearing aid repair",
+    photo: "repair",
     whoTitle: "Bring your hearing aid in if",
     who: [
       "It sounds weak, distorted or whistles",
@@ -165,6 +166,7 @@ export const categories: ServiceCategory[] = [
     intro:
       "Ringing, buzzing or hissing in the ears can be stressful. We assess your hearing and tinnitus, then build a plan with sound therapy and counselling to make it easier to live with.",
     imageLabel: "Photo · tinnitus counselling",
+    photo: "tinnitus",
     whoTitle: "Who it's for",
     who: [
       "Ringing, buzzing, humming or hissing in one or both ears",
@@ -267,6 +269,7 @@ export const categories: ServiceCategory[] = [
     intro:
       "Loud snoring can disturb sleep for you and your family, and may be a sign of sleep apnea. We assess snoring, screen for sleep apnea and offer custom anti-snoring devices.",
     imageLabel: "Photo · snoring consultation",
+    photo: "snoring",
     whoTitle: "Who it's for",
     who: ["Loud, regular snoring", "Pauses in breathing noticed by a partner", "Waking up tired or with headaches", "Feeling sleepy during the day"],
     subs: [

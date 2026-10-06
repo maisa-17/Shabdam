@@ -21,9 +21,9 @@ export const site = {
     googleReviews: "https://g.page/",
   },
   branches: [
-    { name: "Thoppumpady", short: "PT Jacob Road", address: "1, Ground Floor, Thoppumpady Junction, PT Jacob Road, Ernakulam 682005", landmark: "Between Mythri Chips & Rozario Bakery, near Our Lady Convent Church", phone: "+91 74908 34743", phoneHref: "tel:+917490834743" },
-    { name: "Thrippunithura", short: "North Fort Road", address: "North Fort Road, Thrippunithura, Ernakulam [PIN — confirm]", landmark: "Opp. Old Sreekala Theatre, near Vadakkekotta Metro Station", phone: "+91 98461 80550", phoneHref: "tel:+919846180550" },
-    { name: "Aluva", short: "[Address]", address: "[Full address]", landmark: "[Landmark]", phone: "+91 90746 04737", phoneHref: "tel:+919074604737" },
+    { name: "Thoppumpady", short: "PT Jacob Road", address: "1, Ground Floor, Thoppumpady Junction, PT Jacob Road, Ernakulam 682005", landmark: "Between Mythri Chips & Rozario Bakery, near Our Lady Convent Church", phone: "+91 74908 34743", phoneHref: "tel:+917490834743", rating: "4.9 ★ · 113 Justdial ratings" },
+    { name: "Thrippunithura", short: "North Fort Road", address: "North Fort Road, Thrippunithura, Ernakulam [PIN — confirm]", landmark: "Opp. Old Sreekala Theatre, near Vadakkekotta Metro Station", phone: "+91 98461 80550", phoneHref: "tel:+919846180550", rating: "4.9 ★ · 250 Justdial ratings" },
+    { name: "Aluva", short: "[Address]", address: "[Full address]", landmark: "[Landmark]", phone: "+91 90746 04737", phoneHref: "tel:+919074604737", rating: "[Rating]" },
   ],
   brands: ["Signia", "Phonak", "Widex", "ReSound", "Starkey", "Oticon"],
 } as const;

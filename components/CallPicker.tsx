@@ -45,9 +45,7 @@ export function BranchPanel({ onClose, className = "" }: { onClose?: () => void;
       <BranchList onPick={onClose} />
       <p className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-2 pt-3 text-sm text-ink-3">
         <span>Open {site.hours}</span>
-        <Link href="/book-appointment" onClick={onClose} className="font-bold whitespace-nowrap text-brand-dark">
-          Book online instead →
-        </Link>
+        
       </p>
     </div>
   );

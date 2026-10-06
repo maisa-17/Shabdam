@@ -53,7 +53,7 @@ export function TestimonialsMinimal({ testimonials, className = "" }: { testimon
       {/* Author row */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
         {/* Avatars */}
-        <div className="flex -space-x-2.5 sm:-space-x-2">
+        <div className="flex flex-wrap -space-x-2.5 gap-y-2 sm:-space-x-2">
           {testimonials.map((t, i) => (
             <button
               key={t.name}

@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2.5">
             <ColTitle>Quick links</ColTitle>
             {footerLinks.map((l) => (
-              <Link key={l.href} href={l.href} className="text-[#e6dcdc]">
+              <Link key={l.href} href={l.href} className="text-[#e6dcdc] hover:text-white">
                 {l.label}
               </Link>
             ))}
@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2.5">
             <ColTitle>Branches</ColTitle>
             {site.branches.map((b) => (
-              <Link key={b.name} href="/contact" className="text-[#e6dcdc]">
+              <Link key={b.name} href="/contact" className="text-[#e6dcdc] hover:text-white">
                 {b.name} · {b.short}
               </Link>
             ))}
@@ -35,7 +35,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2.5">
             <ColTitle>Contact</ColTitle>
             {site.branches.map((b) => (
-              <a key={b.name} href={b.phoneHref} className="text-[#e6dcdc]">
+              <a key={b.name} href={b.phoneHref} className="text-[#e6dcdc] hover:text-white">
                 {b.name}: {b.phone}
               </a>
             ))}

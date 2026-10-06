@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420">
+  <defs>
+    <!-- Cut a white halo out of the "O" so the green dot floats inside it -->
+    <mask id="o-cut">
+      <rect width="1000" height="420" fill="#fff"/>
+      <circle cx="398" cy="186" r="42" fill="#000"/>
+    </mask>
+  </defs>
+
+
+  <g fill="#32312e" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="170">
+    <text x="84" y="240">PH</text>
+    <text x="514" y="240">NAK</text>
+  </g>
+
+  <!-- The "O": thick ring, left side bitten by the dot's halo -->
+  <path mask="url(#o-cut)" fill="#32312e" fill-rule="evenodd"
+        d="M432 115a63 63 0 1 0 0.01 0z M432 150a28 28 0 1 0 0.01 0z"/>
+  <circle cx="398" cy="186" r="31" fill="#8cc21f"/>
+
+  <text x="926" y="355" text-anchor="end" fill="#8f8f88"
+        font-family="'Segoe UI Light', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="300" font-size="96" letter-spacing="-1">life is on</text>
+</svg>

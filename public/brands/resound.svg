@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380">
+  <rect x="40" y="30" width="920" height="320" rx="18" fill="#a6192e"/>
+  <g fill="#ffffff" font-family="Bahnschrift, 'DIN Alternate', 'Segoe UI', Arial, sans-serif">
+    <text x="110" y="220" font-size="138" font-weight="300">ReSound</text>
+    <text x="668" y="135" font-size="58" font-weight="400">GN</text>
+  </g>
+  <!-- Signal bar: dotted run into a solid line -->
+  <g fill="#ffffff">
+    <rect x="115" y="257" width="11" height="20" rx="2"/>
+    <rect x="147" y="257" width="11" height="20" rx="2"/>
+    <rect x="179" y="257" width="11" height="20" rx="2"/>
+    <rect x="211" y="257" width="11" height="20" rx="2"/>
+    <rect x="243" y="257" width="11" height="20" rx="2"/>
+    <rect x="275" y="257" width="11" height="20" rx="2"/>
+    <rect x="307" y="257" width="11" height="20" rx="2"/>
+    <rect x="339" y="257" width="11" height="20" rx="2"/>
+    <rect x="371" y="257" width="11" height="20" rx="2"/>
+    <rect x="403" y="257" width="11" height="20" rx="2"/>
+    <rect x="435" y="257" width="11" height="20" rx="2"/>
+    <rect x="470" y="257" width="335" height="20" rx="6"/>
+  </g>
+</svg>

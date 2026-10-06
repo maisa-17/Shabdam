@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1340">
+  <!-- Badge: red disc with the white "S" ribbon -->
+  <circle cx="550" cy="462" r="410" fill="#ff0000"/>
+  <path d="M730 285H650A108 108 0 0 0 542 393V535A108 108 0 0 1 434 643H372"
+        fill="none" stroke="#ffffff" stroke-width="108"/>
+  <!-- Wordmark "signia" built from 50px strokes -->
+  <g fill="none" stroke="#4b4b4b" stroke-width="50" transform="translate(45 0)">
+    <path d="M168 1035H138A50 50 0 0 0 88 1085V1135A50 50 0 0 1 38 1185H10"/>
+    <path d="M228 1010V1210"/>
+    <circle cx="398" cy="1110" r="75"/>
+    <path d="M473 1030V1215A60 60 0 0 1 413 1275H390"/>
+    <path d="M578 1210V1100A64 64 0 0 1 706 1100V1210"/>
+    <path d="M790 1010V1210"/>
+    <circle cx="910" cy="1110" r="75"/>
+    <path d="M985 1035V1210"/>
+  </g>
+</svg>

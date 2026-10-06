@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 type ButtonProps = {
@@ -30,6 +31,26 @@ export function Button({ href, children, variant = "primary", size = "md", class
   return (
     <Link href={href} className={cls} onClick={onClick}>
       {children}
+    </Link>
+  );
+}
+
+// Rounded pill with a red arrow disc, as used in the home hero.
+const pillTones = {
+  light: "bg-[#EFE9DD] text-ink hover:bg-white hover:text-ink",
+  dark: "bg-ink text-[#EFE9DD] hover:bg-black hover:text-white",
+};
+
+export function PillButton({ href, children, tone = "light", className = "" }: { href: string; children: ReactNode; tone?: keyof typeof pillTones; className?: string }) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex items-center gap-[22px] rounded-full py-2 pr-2 pl-7 text-[17px] font-semibold transition-all duration-200 hover:-translate-y-0.5 md:text-[19px] ${pillTones[tone]} ${className}`}
+    >
+      {children}
+      <span className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-[#E3000F] transition-transform duration-200 group-hover:translate-x-[3px]">
+        <ArrowRight className="h-5 w-5 text-white" strokeWidth={2} />
+      </span>
     </Link>
   );
 }

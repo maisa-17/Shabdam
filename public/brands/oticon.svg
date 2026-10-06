@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520">
+  <!-- Wordmark "oticon" built from 46px strokes -->
+  <g fill="none" stroke="#1d1d1b" stroke-width="46">
+    <circle cx="125" cy="255" r="82"/>
+    <path d="M290 105V360M267 173H345"/>
+    <path d="M415 150V360"/>
+    <path d="M622 197A82 82 0 1 0 622 313"/>
+    <circle cx="770" cy="255" r="82"/>
+    <path d="M910 360V173H990A70 70 0 0 1 1060 243V360"/>
+  </g>
+  <polygon points="392,110 438,100 438,140 392,140" fill="#c8118c"/>
+  <text x="20" y="475" fill="#1d1d1b" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-size="92"><tspan font-weight="400">life-changing </tspan><tspan font-weight="700">technology</tspan></text>
+</svg>
