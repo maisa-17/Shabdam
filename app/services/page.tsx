@@ -31,9 +31,9 @@ export default function ServicesPage() {
               className={cn(
                 "relative flex scroll-mt-28 flex-col gap-5 rounded-[22px] border border-line bg-white p-6 shadow-card md:p-8",
                 "transition-all duration-500 ease-in-out motion-reduce:transition-none",
-                "group-hover/cards:scale-[0.97] group-hover/cards:opacity-60 group-hover/cards:blur-[2px]",
-                "hover:z-10 hover:scale-[1.03]! hover:opacity-100! hover:blur-none! hover:shadow-[0_24px_60px_rgba(31,26,27,0.14)]",
-                "focus-within:z-10 focus-within:scale-[1.03]! focus-within:opacity-100! focus-within:blur-none!"
+                "group-hover/cards:scale-[0.97] group-hover/cards:opacity-60",
+                "hover:z-10 hover:scale-[1.03]! hover:opacity-100! hover:shadow-[0_24px_60px_rgba(31,26,27,0.14)]",
+                "focus-within:z-10 focus-within:scale-[1.03]! focus-within:opacity-100!"
               )}
             >
               <div className="flex items-start justify-between gap-4">

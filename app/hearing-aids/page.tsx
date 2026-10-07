@@ -49,7 +49,7 @@ export default function HearingAidsPage() {
         <Container>
           <BrandOrbit
             logos={brandLogos}
-            center={{ src: "/apple-touch-icon.png", alt: site.name }}
+            center={{ src: "/ear-icon.webp", alt: site.name }}
             title={`Genuine hearing aids from ${brandLogos.length} global brands`}
             description="Chosen from your test results and fitted by our audiologists — with a free trial before you decide."
             action={

@@ -15,7 +15,7 @@ export const site = {
   workingDays: "[confirm working days]",
   languages: ["Malayalam", "English", "Tamil", "Hindi"],
   consultationFee: "₹400 [confirm]",
-  rating: { score: "4.9", count: "360+", source: "Justdial" },
+  rating: { score: "4.9", count: "360+", source: "Google" }, // [confirm: score and count were taken from Justdial; update to the Google figures]
   links: {
     youtube: "https://www.youtube.com/@ShabdhamHearingAidCenter",
     googleReviews: "https://g.page/",
@@ -24,6 +24,10 @@ export const site = {
     { name: "Thoppumpady", short: "PT Jacob Road", address: "1, Ground Floor, Thoppumpady Junction, PT Jacob Road, Ernakulam 682005", landmark: "Between Mythri Chips & Rozario Bakery, near Our Lady Convent Church", phone: "+91 74908 34743", phoneHref: "tel:+917490834743", rating: "4.9 ★ · 113 Justdial ratings" },
     { name: "Thrippunithura", short: "North Fort Road", address: "North Fort Road, Thrippunithura, Ernakulam [PIN — confirm]", landmark: "Opp. Old Sreekala Theatre, near Vadakkekotta Metro Station", phone: "+91 98461 80550", phoneHref: "tel:+919846180550", rating: "4.9 ★ · 250 Justdial ratings" },
     { name: "Aluva", short: "[Address]", address: "[Full address]", landmark: "[Landmark]", phone: "+91 90746 04737", phoneHref: "tel:+919074604737", rating: "[Rating]" },
+  ],
+  // Announced but not yet open: kept out of `branches` so they don't appear in call/enquiry lists.
+  upcomingBranches: [
+    { name: "Angamaly", opening: "Opening [month/year — confirm]" },
   ],
   brands: ["Signia", "Phonak", "Widex", "ReSound", "Starkey", "Oticon"],
 } as const;
@@ -41,5 +45,5 @@ export const footerLinks = [
   { href: "/services", label: "Services" },
   { href: "/hearing-aids", label: "Hearing Aids" },
   { href: "/contact", label: "Contact & Branches" },
-  { href: "/book-appointment", label: "Book Appointment" },
+  { href: "/contact#enquiry", label: "Book Appointment" },
 ] as const;

@@ -18,7 +18,7 @@ export default function CtaBanner({
             <p className="mt-2 text-lg text-blush-soft">{text}</p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3.5">
-            <Button href="/book-appointment">Book Appointment</Button>
+            <Button href="/contact#enquiry">Book Appointment</Button>
             <CallMenu
               placement="top"
               className="inline-flex items-center justify-center gap-2 rounded-[10px] border-2 border-white px-7 py-3.5 text-[17px] font-bold text-white transition-colors hover:bg-white/10"

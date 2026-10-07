@@ -32,7 +32,7 @@ export const categories: ServiceCategory[] = [
     slug: "hearing-tests",
     num: "01",
     title: "Hearing Tests & Diagnostics",
-    short: "PTA, impedance, OAE and BERA tests in a sound-treated room.",
+    short: "PTA, impedance and OAE tests in a sound-treated room.",
     intro:
       "Accurate, painless hearing tests for every age — from newborn screening to detailed adult assessments — carried out by qualified audiologists in a sound-treated room.",
     photo: "booth",
@@ -53,9 +53,7 @@ export const categories: ServiceCategory[] = [
       { slug: "tympanometry", name: "Tympanometry", desc: "Checks how your eardrum moves, to look for fluid, wax or middle-ear problems." },
       { slug: "impedance-audiometry", name: "Impedance Audiometry", desc: "Tympanometry plus acoustic reflex tests for a fuller picture of middle-ear health." },
       { slug: "oae", name: "Otoacoustic Emissions (OAE)", desc: "A quick, painless check of the inner ear — ideal for newborns and young children." },
-      { slug: "bera", name: "BERA", desc: "Measures how the hearing nerve responds to sound. No response is needed from the patient." },
       { slug: "newborn-screening", name: "Newborn Hearing Screening", desc: "Painless screening in the first weeks of life, often done while the baby sleeps." },
-      { slug: "pediatric-assessment", name: "Pediatric Hearing Assessment", desc: "Play-based, age-appropriate testing for toddlers and school children." },
     ],
     steps: [
       { title: "Case history", desc: "We ask about your hearing concerns, health and noise exposure." },

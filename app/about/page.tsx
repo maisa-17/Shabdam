@@ -56,6 +56,7 @@ export default function AboutPage() {
               <Image
                 src={photos.fitting.src}
                 alt={photos.fitting.alt}
+                loading="eager"
                 fill
                 placeholder="blur"
                 sizes="(min-width: 1024px) 560px, 100vw"
@@ -63,7 +64,7 @@ export default function AboutPage() {
               />
             </div>
             <div className="absolute bottom-0 -left-4 hidden h-[220px] w-[46%] overflow-hidden rounded-3xl border-8 border-cream sm:block md:-left-10">
-              <Image src={photos.booth.src} alt={photos.booth.alt} fill placeholder="blur" sizes="260px" className={`object-cover ${photos.booth.position}`} />
+              <Image src={photos.booth.src} alt={photos.booth.alt} fill loading="eager" placeholder="blur" sizes="260px" className={`object-cover ${photos.booth.position}`} />
             </div>
             <div className="absolute -top-6 right-6 flex h-28 w-28 rotate-[-8deg] flex-col items-center justify-center rounded-full bg-brand text-center text-white shadow-[0_16px_40px_rgba(227,0,15,0.35)] md:h-32 md:w-32">
               <span className="text-[11px] font-bold tracking-[0.14em] uppercase">Since</span>
@@ -171,7 +172,7 @@ export default function AboutPage() {
                         <Icon d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z" size={16} />
                         {b.phone}
                       </a>
-                      <Link href="/book-appointment" className="rounded-full bg-brand px-4 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-brand-dark hover:text-white">
+                      <Link href="/contact#enquiry" className="rounded-full bg-brand px-4 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-brand-dark hover:text-white">
                         Book here
                       </Link>
                     </span>

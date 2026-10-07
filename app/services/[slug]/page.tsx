@@ -69,7 +69,7 @@ export default async function ServiceCategoryPage(props: PageProps<"/services/[s
           )
         }
       >
-        <Button href="/book-appointment">Book an appointment</Button>
+        <Button href="/contact#enquiry">Book an appointment</Button>
         <Button href="/services" variant="outline-light">
           All services
         </Button>
@@ -142,7 +142,7 @@ export default async function ServiceCategoryPage(props: PageProps<"/services/[s
                   title={s.name}
                   description={s.desc}
                   ctaText="Book this service"
-                  ctaHref="/book-appointment"
+                  ctaHref="/contact#enquiry"
                   icon={<Icon strokeWidth={1.5} />}
                 />
               );

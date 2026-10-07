@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
-import { CallMenu, PhoneIcon } from "@/components/CallPicker";
+import BranchFinder from "@/components/BranchFinder";
 import EnquiryForm from "@/components/EnquiryForm";
 import PageHero from "@/components/PageHero";
-import { Container, Eyebrow, Heading, Icon, Placeholder } from "@/components/ui";
+import { Container, Eyebrow, Heading, Icon } from "@/components/ui";
+import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
+import googleReviewsStacked from "@/public/google-reviews-stacked.svg";
 
 export const metadata: Metadata = {
   title: "Contact & Branches",
@@ -13,26 +15,24 @@ export const metadata: Metadata = {
     "Call, WhatsApp or visit Shabdham Hearing Aid Center at Thoppumpady, Thrippunithura or Aluva in Kochi. Branch addresses, maps, phone numbers and opening hours.",
 };
 
-// Values still in [brackets] are unconfirmed placeholders; don't link or map them.
+// Values still in [brackets] are unconfirmed placeholders; don't link them.
 const confirmed = (s: string) => !s.startsWith("[");
-// Drop bracketed notes like "[PIN — confirm]" before sending an address to Maps.
-const mapQuery = (address: string) => encodeURIComponent(address.replace(/\[[^\]]*\]/g, "").trim());
 
 const icons = {
-  whatsapp: "M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5Z",
   mail: "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2ZM22 6l-10 7L2 6",
   clock: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 6v6l4 2",
-  pin: "M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12ZM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z",
 };
 
-function QuickCard({ icon, title, children }: { icon: ReactNode; title: string; children: ReactNode }) {
+function Fact({ icon, label, children }: { icon: string; label: string; children: ReactNode }) {
   return (
-    <div className="flex items-start gap-4 rounded-[20px] border border-line bg-white p-6 shadow-card">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-dark">{icon}</span>
-      <span className="flex min-w-0 flex-col gap-1">
-        <span className="text-sm font-bold tracking-[0.08em] text-ink-4 uppercase">{title}</span>
-        {children}
+    <div className="flex items-start gap-4">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 text-[#ff6b74]">
+        <Icon d={icon} size={20} />
       </span>
+      <div className="flex min-w-0 flex-col gap-0.5">
+        <span className="text-[13px] font-bold tracking-[0.08em] text-[#ffd3d6]/80 uppercase">{label}</span>
+        {children}
+      </div>
     </div>
   );
 }
@@ -42,119 +42,81 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Contact us & visit a branch."
-        intro="Three branches across Kochi. Call, WhatsApp or walk in — we're happy to help."
+        title="Talk to us. We're here to help."
+        intro="Three branches across Kochi. Call the one nearest to you, message us on WhatsApp, or just walk in."
       />
 
-      {/* Quick contact */}
-      <section className="py-14 md:py-20">
-        <Container className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <QuickCard icon={<PhoneIcon size={20} />} title="Call us">
-            <CallMenu className="text-left text-lg font-bold text-ink hover:text-brand-dark">Choose a branch →</CallMenu>
-          </QuickCard>
-          <QuickCard icon={<Icon d={icons.whatsapp} size={20} />} title="WhatsApp">
-            <a
-              href={`${site.whatsappHref}?text=${encodeURIComponent(site.whatsappMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg font-bold text-ink hover:text-brand-dark"
-            >
-              {confirmed(site.whatsapp) ? site.whatsapp : "Message us"}
-            </a>
-          </QuickCard>
-          <QuickCard icon={<Icon d={icons.mail} size={20} />} title="Email">
-            {confirmed(site.email) ? (
-              <a href={`mailto:${site.email}`} className="truncate text-lg font-bold text-ink hover:text-brand-dark">
-                {site.email}
-              </a>
-            ) : (
-              <span className="text-lg font-bold break-words">{site.email}</span>
-            )}
-          </QuickCard>
-          <QuickCard icon={<Icon d={icons.clock} size={20} />} title="Hours">
-            <span className="text-lg font-bold">{site.hours}</span>
-            <span className="text-sm text-ink-3">{site.workingDays}</span>
-          </QuickCard>
-        </Container>
-        <Container className="pt-5">
-          <p className="text-[15px] text-ink-3">We speak {site.languages.join(" · ")}.</p>
-        </Container>
-      </section>
-
       {/* Branches */}
-      <section id="branches" className="scroll-mt-28 bg-white py-16 md:scroll-mt-32 md:py-24">
+      <section id="branches" className="scroll-mt-28 py-16 md:scroll-mt-32 md:py-24">
         <Container className="flex flex-col gap-10">
-          <div className="flex flex-col gap-4">
-            <Eyebrow>Our branches</Eyebrow>
-            <Heading>Find the branch nearest to you</Heading>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {site.branches.map((b) => {
-              const mapped = confirmed(b.address);
-              return (
-                <article key={b.name} id={b.name.toLowerCase()} className="flex scroll-mt-32 flex-col overflow-hidden rounded-[22px] border border-line bg-cream">
-                  {mapped ? (
-                    <iframe
-                      title={`Map of the ${b.name} branch`}
-                      src={`https://maps.google.com/maps?q=${mapQuery(b.address)}&z=16&output=embed`}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="h-[220px] w-full border-0"
-                    />
-                  ) : (
-                    <Placeholder label={`Map · ${b.name} [address to confirm]`} className="h-[220px]" />
-                  )}
-                  <div className="flex flex-1 flex-col gap-3 p-6">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-display text-2xl font-extrabold">{b.name}</h3>
-                      <span className="text-sm font-semibold text-brand-dark">{b.rating}</span>
-                    </div>
-                    <p className="flex gap-2 text-[15px] leading-relaxed text-ink-2">
-                      <Icon d={icons.pin} size={18} className="mt-0.5 shrink-0 text-brand-dark" />
-                      {b.address}
-                    </p>
-                    <p className="text-sm text-ink-4">Landmark: {b.landmark}</p>
-                    <p className="text-sm text-ink-3">
-                      {site.hours} ·{" "}
-                      <a href={b.phoneHref} className="font-bold text-ink hover:text-brand-dark">
-                        {b.phone}
-                      </a>
-                    </p>
-                    <div className="mt-auto flex flex-wrap gap-3 pt-3">
-                      {mapped && (
-                        <a
-                          href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery(b.address)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center rounded-[10px] border-2 border-brand-dark px-5 py-2.5 text-[15px] font-bold text-brand-dark transition-colors hover:bg-brand-soft"
-                        >
-                          Directions
-                        </a>
-                      )}
-                      <Link
-                        href="/book-appointment"
-                        className="inline-flex items-center justify-center rounded-[10px] border-2 border-brand bg-brand px-5 py-2.5 text-[15px] font-bold text-white transition-colors hover:border-brand-dark hover:bg-brand-dark hover:text-white"
-                      >
-                        Book here
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+          <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="flex flex-col gap-4">
+              <Eyebrow>Our branches</Eyebrow>
+              <Heading>Find the branch nearest to you</Heading>
+            </div>
+            <p className="max-w-[380px] text-lg leading-relaxed text-ink-3">Open a branch to see its map, landmark and direct phone number.</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <BranchFinder />
+          </Reveal>
         </Container>
       </section>
 
       {/* Enquiry */}
-      <section className="py-16 md:py-24">
-        <Container className="grid items-start gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <div className="flex flex-col gap-4">
-            <Eyebrow>Send an enquiry</Eyebrow>
-            <Heading>Have a question? Send us a message.</Heading>
-            <p className="text-lg leading-relaxed text-ink-3">For appointments, prices, repairs or anything else. Our team replies within working hours.</p>
-          </div>
-          <EnquiryForm />
+      <section id="enquiry" className="scroll-mt-28 pb-16 md:scroll-mt-32 md:pb-24">
+        <Container>
+          <Reveal className="grid overflow-hidden rounded-[32px] border border-line bg-white shadow-card lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+            {/* Info panel, styled like the branch cards above */}
+            <div className="relative flex flex-col gap-10 overflow-hidden bg-[radial-gradient(circle_at_85%_100%,#5a1c21_0%,#3a0a0e_45%,#170507_100%)] p-7 text-white md:p-12">
+              <svg aria-hidden viewBox="0 0 400 400" className="pointer-events-none absolute -right-32 -bottom-32 w-[440px] text-[#ff6b74] opacity-20">
+                {[190, 150, 110, 70].map((r) => (
+                  <circle key={r} cx="200" cy="200" r={r} fill="none" stroke="currentColor" strokeWidth="1.5" />
+                ))}
+              </svg>
+
+              <div className="relative flex flex-col gap-4">
+                <Eyebrow dark>Send an enquiry</Eyebrow>
+                <h2 className="font-display text-3xl leading-[1.1] font-extrabold tracking-[-0.025em] md:text-[40px]">Have a question? Send us a message.</h2>
+                <p className="text-lg leading-relaxed text-[#e9cfd1]">For appointments, prices, repairs or anything else. Our team replies within working hours.</p>
+              </div>
+
+              <div className="relative flex flex-col gap-6">
+                <Fact icon={icons.clock} label="Opening hours">
+                  <span className="text-lg font-bold">{site.hours}</span>
+                  <span className="text-[15px] text-[#e9cfd1]">{site.workingDays}</span>
+                </Fact>
+                <Fact icon={icons.mail} label="Email">
+                  {confirmed(site.email) ? (
+                    <a href={`mailto:${site.email}`} className="truncate text-lg font-bold text-white hover:text-blush">
+                      {site.email}
+                    </a>
+                  ) : (
+                    <span className="text-lg font-bold break-words">{site.email}</span>
+                  )}
+                </Fact>
+              </div>
+
+              <div className="relative mt-auto flex flex-wrap items-center gap-4 rounded-[20px] border border-white/10 bg-white/[0.06] p-5 backdrop-blur-sm md:gap-5">
+                <a href={site.links.googleReviews} target="_blank" rel="noopener noreferrer" aria-label="Read our reviews on Google" className="shrink-0 transition-transform hover:-translate-y-0.5">
+                  <Image src={googleReviewsStacked} alt="Google reviews, 5 stars" unoptimized className="h-16 w-auto md:h-[72px]" />
+                </a>
+                <span className="font-display text-[40px] leading-none font-extrabold tracking-[-0.03em] text-white md:text-[44px]">
+                  {site.rating.score}
+                  <span className="text-[#ff6b74]">★</span>
+                </span>
+                <span className="flex min-w-0 basis-full flex-col gap-1 text-[15px] leading-snug text-[#e9cfd1] sm:flex-1 sm:basis-auto">
+                  Rated by {site.rating.count} patients on {site.rating.source}.
+                  <a href={site.links.googleReviews} target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:text-blush">
+                    Read our Google reviews →
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-12">
+              <EnquiryForm />
+            </div>
+          </Reveal>
         </Container>
       </section>
     </>

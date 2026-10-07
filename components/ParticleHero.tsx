@@ -283,7 +283,7 @@ export default function ParticleHero() {
           </p>
           <div className="pointer-events-auto flex flex-wrap gap-4">
             <Link
-              href="/book-appointment"
+              href="/contact#enquiry"
               className="inline-flex items-center justify-center rounded-xl bg-brand px-7 py-3.5 text-[17px] font-bold text-white shadow-[0_12px_36px_rgba(227,0,15,0.45)] transition-colors hover:bg-brand-dark hover:text-white"
             >
               Book a hearing test

@@ -1,6 +1,5 @@
 "use client";
 
-import { MotionConfig, motion, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { PillButton } from "@/components/ui";
 
@@ -13,26 +12,22 @@ interface WordsPullUpProps {
 }
 
 export const WordsPullUp = ({ text, className = "", showAsterisk = false, style }: WordsPullUpProps) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
   const words = text.split(" ");
 
+  // CSS animation (.sh-rise) so the words paint before JavaScript loads.
   return (
-    <span ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
+    <span className={`inline-flex flex-wrap ${className}`} style={style}>
       {words.map((word, i) => {
         const isLast = i === words.length - 1;
         return (
-          <motion.span
+          <span
             key={i}
-            initial={{ y: 20, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="relative inline-block"
-            style={{ marginRight: isLast ? 0 : "0.25em" }}
+            className="sh-rise relative inline-block"
+            style={{ marginRight: isLast ? 0 : "0.25em", animationDelay: `${i * 0.08}s` }}
           >
             {word}
             {showAsterisk && isLast && <span className="absolute top-[0.65em] -right-[0.3em] text-[0.31em]">*</span>}
-          </motion.span>
+          </span>
         );
       })}
     </span>
@@ -52,9 +47,6 @@ interface WordsPullUpMultiStyleProps {
 }
 
 export const WordsPullUpMultiStyle = ({ segments, className = "", style }: WordsPullUpMultiStyleProps) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-
   const words: { word: string; className?: string }[] = [];
   segments.forEach((seg) => {
     seg.text.split(" ").forEach((w) => {
@@ -63,18 +55,11 @@ export const WordsPullUpMultiStyle = ({ segments, className = "", style }: Words
   });
 
   return (
-    <span ref={ref} className={`inline-flex flex-wrap justify-center ${className}`} style={style}>
+    <span className={`inline-flex flex-wrap justify-center ${className}`} style={style}>
       {words.map((w, i) => (
-        <motion.span
-          key={i}
-          initial={{ y: 20, opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className={`inline-block ${w.className ?? ""}`}
-          style={{ marginRight: "0.25em" }}
-        >
+        <span key={i} className={`sh-rise inline-block ${w.className ?? ""}`} style={{ marginRight: "0.25em", animationDelay: `${i * 0.08}s` }}>
           {w.word}
-        </motion.span>
+        </span>
       ))}
     </span>
   );
@@ -381,14 +366,22 @@ const PrismaHero = () => {
     const ro = new ResizeObserver(resize);
     ro.observe(hero);
 
+    // Pause the CSS backdrop too while the hero is off-screen or the tab is hidden.
+    const syncPaused = () => hero.classList.toggle("sh-paused", !visible || document.hidden);
+
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      syncPaused();
       if (visible) start();
       else stop();
     });
     io.observe(hero);
 
-    const onVisibility = () => (document.hidden ? stop() : start());
+    const onVisibility = () => {
+      syncPaused();
+      if (document.hidden) stop();
+      else start();
+    };
     document.addEventListener("visibilitychange", onVisibility);
 
     const onMove = (e: PointerEvent) => {
@@ -431,59 +424,46 @@ const PrismaHero = () => {
   }, []);
 
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       <section ref={heroRef} className="sh-hero relative -mt-20 flex h-svh min-h-[560px] w-full items-end overflow-hidden bg-[#1A0406] md:-mt-24">
         <SoundBackdrop />
 
         <canvas ref={canvasRef} aria-hidden className="pointer-events-none absolute inset-0 z-[1] h-full w-full" />
 
         {/* Hero content */}
-        <motion.div
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
-          className="relative z-[2] px-5 pb-10 md:px-14 md:pb-14"
-        >
+        {/* Entrance animations are CSS (.sh-rise / .sh-slide) so the content paints before JavaScript loads. */}
+        <div className="relative z-[2] px-5 pb-10 md:px-14 md:pb-14">
           <h1 className="mt-5 -ml-[0.045em] flex items-start gap-[0.045em] font-display text-[clamp(60px,min(11.5vw,19svh),180px)] leading-[0.9] font-semibold tracking-[-0.055em] text-[#EFE9DD]">
-            <WordsPullUp text="Hear life again." />
-            <motion.svg
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            <WordsPullUp text="Feel The Rhythm" />
+            <svg
               viewBox="0 0 58 58"
               fill="none"
               stroke="#FF2E17"
               strokeWidth="6"
               strokeLinecap="round"
-              className="mt-[0.118em] h-[0.264em] w-[0.264em] shrink-0"
+              className="sh-slide mt-[0.118em] h-[0.264em] w-[0.264em] shrink-0"
+              style={{ animationDelay: "0.5s" }}
               aria-hidden
             >
               <path d="M14 10 Q32 29 14 48" />
               <path d="M30 2 Q56 29 30 56" />
-            </motion.svg>
+            </svg>
           </h1>
 
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-[26px] max-w-[900px] text-[17px] leading-[1.5] text-[rgba(239,233,221,0.78)] md:text-[22px]"
+          <p
+            className="sh-rise mt-[26px] max-w-[900px] text-[17px] leading-[1.5] text-[rgba(239,233,221,0.78)] md:text-[22px]"
+            style={{ animationDelay: "0.5s", animationDuration: "0.8s" }}
           >
             Scientific hearing tests, expert hearing aid fitting and lifelong aftercare — for newborns to grandparents, at three branches across
             Kochi.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-[34px]"
-          >
-            <PillButton href="/book-appointment">Book a hearing test</PillButton>
-          </motion.div>
-        </motion.div>
+          <div className="sh-rise mt-[34px]" style={{ animationDelay: "0.7s", animationDuration: "0.8s" }}>
+            <PillButton href="/contact#enquiry">Book a hearing test</PillButton>
+          </div>
+        </div>
       </section>
-    </MotionConfig>
+    </>
   );
 };
 

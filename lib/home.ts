@@ -16,7 +16,7 @@ export const heroStats: Stat[] = [
 
 // Service cards in the "Our expertise" section.
 export const featuredServices: Feature[] = [
-  { title: "Hearing Tests & Diagnostics", desc: "PTA, impedance, OAE and BERA tests in a sound-treated room.", img: "Photo · hearing test booth", href: "/services/hearing-tests", photo: "booth" },
+  { title: "Hearing Tests & Diagnostics", desc: "PTA, impedance and OAE tests in a sound-treated room.", img: "Photo · hearing test booth", href: "/services/hearing-tests", photo: "booth" },
   { title: "Hearing Aids & Fitting", desc: "Free trial, precise programming and real-ear verified fitting.", img: "Photo · hearing aid fitting", href: "/services/hearing-aid-fitting", photo: "fitting" },
   { title: "Children's Hearing & Speech", desc: "Newborn screening, pediatric fitting and family counselling.", img: "Photo · child with audiologist", href: "/services/pediatric", photo: "child" },
   { title: "Speech Therapy", desc: "Articulation, fluency and voice therapy for children and adults.", img: "Photo · speech therapy session", href: "/services/speech-therapy", photo: "speech" },

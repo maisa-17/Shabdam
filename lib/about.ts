@@ -12,7 +12,7 @@ export const storyParagraphs = [
 
 export const aboutStats: Stat[] = [
   { big: "[XX,000]+", small: "Patients served" },
-  { big: "4.9 ★", small: "360+ Justdial ratings" },
+  { big: "4.9 ★", small: "360+ Google ratings" },
   { big: "3", small: "Branches in Kochi" },
   { big: "11", small: "Service lines" },
 ];

@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionConfig, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -30,6 +31,7 @@ function CallButton({ open, onToggle }: { open: boolean; onToggle: () => void })
 export default function NavLinks() {
   const pathname = usePathname();
   const [panel, setPanel] = useState<Panel>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const root = useRef<HTMLDivElement>(null);
 
   const toggle = (p: Exclude<Panel, null>) => setPanel((cur) => (cur === p ? null : p));
@@ -55,16 +57,43 @@ export default function NavLinks() {
 
   return (
     <div ref={root} className="contents">
-      <nav className="hidden gap-9 text-base font-medium lg:flex">
-        {nav.map((item) => (
-          <Link key={item.href} href={item.href} className={isActive(item.href) ? "text-brand-dark" : ""}>
-            {item.label}
-          </Link>
-        ))}
-      </nav>
+      {/* Desktop links: a pill slides behind whichever link is hovered or focused */}
+      <MotionConfig reducedMotion="user">
+        <nav className="hidden gap-1 text-base font-medium lg:flex" onMouseLeave={() => setHovered(null)}>
+          {nav.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onMouseEnter={() => setHovered(item.href)}
+                onFocus={() => setHovered(item.href)}
+                onBlur={() => setHovered(null)}
+                className={`group relative isolate rounded-full px-4 py-2 transition-colors hover:text-brand-dark ${active ? "text-brand-dark" : "text-ink"}`}
+              >
+                {hovered === item.href && (
+                  <motion.span
+                    layoutId="nav-hover"
+                    className="absolute inset-0 -z-10 rounded-full bg-brand-soft"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+                {item.label}
+                {/* Underline: always on for the current page, grows from the centre on hover/focus for the rest */}
+                <span
+                  aria-hidden
+                  className={`absolute right-4 bottom-1 left-4 h-0.5 origin-center rounded-full bg-brand transition-transform duration-300 ${
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                  }`}
+                />
+              </Link>
+            );
+          })}
+        </nav>
+      </MotionConfig>
       <div className="hidden items-center gap-5 lg:flex">
         <CallButton open={panel === "call"} onToggle={() => toggle("call")} />
-        <Button href="/book-appointment" size="sm">
+        <Button href="/contact#enquiry" size="sm">
           Book Appointment
         </Button>
       </div>
@@ -96,14 +125,14 @@ export default function NavLinks() {
                 key={item.href}
                 href={item.href}
                 onClick={close}
-                className={`border-b border-line py-3 ${isActive(item.href) ? "text-brand-dark" : ""}`}
+                className={`-mx-3 rounded-xl border-b border-line px-3 py-3 transition-colors hover:bg-brand-soft hover:text-brand-dark ${isActive(item.href) ? "text-brand-dark" : ""}`}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
           <div className="mt-5 flex flex-col gap-3">
-            <Button href="/book-appointment" onClick={close}>
+            <Button href="/contact#enquiry" onClick={close}>
               Book Appointment
             </Button>
           </div>

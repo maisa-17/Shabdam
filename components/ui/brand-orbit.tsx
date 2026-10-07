@@ -21,7 +21,7 @@ function LogoCard({ logo, className, style }: { logo: OrbitLogo; className?: str
     <li
       style={style}
       className={cn(
-        "absolute z-30 flex h-14 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white px-3 py-2 shadow-md shadow-black/5 transition-transform duration-300 hover:scale-110 lg:h-18 lg:w-40 lg:px-4",
+        "absolute z-30 flex h-9 w-17 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-xl border border-line bg-white px-2 py-1.5 shadow-md shadow-black/5 transition-transform duration-300 hover:scale-110 sm:h-14 sm:w-28 sm:rounded-2xl sm:px-3 sm:py-2 lg:h-18 lg:w-40 lg:px-4",
         className
       )}
     >
@@ -42,7 +42,7 @@ function Ring({ logos, inner = false }: { logos: OrbitLogo[]; inner?: boolean })
       <div
         aria-hidden
         className={cn(
-          "absolute z-10 aspect-square animate-spin rounded-full border-t border-brand/20 bg-linear-to-b to-transparent to-25% opacity-0 transition-opacity duration-500 [animation-duration:3.5s] group-hover:opacity-100 motion-reduce:animate-none",
+          "absolute z-10 aspect-square animate-spin rounded-full border-t border-brand/20 bg-linear-to-b to-transparent to-25% opacity-0 transition-opacity duration-500 [animation-duration:3.5s] group-hover:opacity-100 motion-reduce:animate-none [@media(hover:none)]:opacity-100",
           inner ? "from-blush/30" : "from-brand/15",
           box
         )}
@@ -59,7 +59,7 @@ function Ring({ logos, inner = false }: { logos: OrbitLogo[]; inner?: boolean })
 function CenterBadge({ center }: { center: OrbitLogo }) {
   return (
     <div className="relative z-20 rounded-full border border-line bg-sand p-1">
-      <div className="flex size-20 items-center justify-center overflow-hidden rounded-full border border-black/10 shadow-xl shadow-black/10 sm:size-24">
+      <div className="flex size-16 items-center justify-center overflow-hidden rounded-full border border-black/10 shadow-xl shadow-black/10 sm:size-20 md:size-24">
         {/* eslint-disable-next-line @next/next/no-img-element -- small square icon */}
         <img src={center.src} alt={center.alt} className="size-full object-cover" />
       </div>
@@ -87,20 +87,7 @@ export function BrandOrbit({
 
   return (
     <div className={cn("mx-auto max-w-5xl", className)}>
-      {/* Phones: the arcs are too tight for readable logos, so show a simple grid around the centre badge */}
-      <div className="flex flex-col items-center gap-6 sm:hidden">
-        <CenterBadge center={center} />
-        <ul className="grid w-full grid-cols-2 gap-3">
-          {logos.map((logo) => (
-            <li key={logo.alt} className="flex h-16 items-center justify-center rounded-2xl border border-line bg-white px-4 py-2 shadow-sm shadow-black/5">
-              {/* eslint-disable-next-line @next/next/no-img-element -- small brand SVGs of varying proportions */}
-              <img src={logo.src} alt={logo.alt} className="max-h-full w-full object-contain" />
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="group relative mx-auto mt-14 hidden aspect-2/1 max-w-xl sm:block lg:max-w-3xl">
+      <div className="group relative mx-auto mt-10 aspect-2/1 max-w-xl max-sm:mx-5 sm:mt-14 lg:max-w-3xl">
         <Ring logos={logos.slice(0, split)} />
         <Ring logos={logos.slice(split)} inner />
         <div className="absolute inset-x-0 bottom-0 mx-auto my-2 flex w-fit justify-center">
