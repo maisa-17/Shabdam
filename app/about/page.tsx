@@ -6,7 +6,7 @@ import CtaBanner from "@/components/CtaBanner";
 import PageHero from "@/components/PageHero";
 import { Container, Icon, PillButton } from "@/components/ui";
 import { Reveal } from "@/components/ui/reveal";
-import { facilities, storyParagraphs, timeline } from "@/lib/about";
+import { facilities, founded, storyParagraphs, timeline } from "@/lib/about";
 import { photos } from "@/lib/photos";
 import { site } from "@/lib/site";
 
@@ -67,8 +67,8 @@ export default function AboutPage() {
               <Image src={photos.booth.src} alt={photos.booth.alt} fill loading="eager" placeholder="blur" sizes="260px" className={`object-cover ${photos.booth.position}`} />
             </div>
             <div className="absolute -top-6 right-6 flex h-28 w-28 rotate-[-8deg] flex-col items-center justify-center rounded-full bg-brand text-center text-white shadow-[0_16px_40px_rgba(227,0,15,0.35)] md:h-32 md:w-32">
-              <span className="text-[11px] font-bold tracking-[0.14em] uppercase">Since</span>
-              <span className="font-display text-3xl font-extrabold tracking-[-0.03em] md:text-4xl">{timeline[0].year}</span>
+              <span className="text-[11px] font-bold tracking-[0.14em] uppercase">Est.</span>
+              <span className="font-display text-3xl font-extrabold tracking-[-0.03em] md:text-4xl">{founded}</span>
             </div>
           </Reveal>
         </Container>
@@ -117,7 +117,7 @@ export default function AboutPage() {
           </Reveal>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            <Reveal className="relative min-h-[360px] overflow-hidden rounded-[24px] md:col-span-2 lg:col-span-1 lg:row-span-3">
+            <Reveal className="relative min-h-[360px] overflow-hidden rounded-[24px] md:col-span-2 lg:col-span-1 lg:row-span-2">
               <Image src={photos.child.src} alt={photos.child.alt} fill placeholder="blur" sizes="(min-width: 1024px) 380px, 100vw" className={`object-cover ${photos.child.position}`} />
               <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(16,3,5,.9)_0%,rgba(16,3,5,0)_60%)]" />
               <p className="absolute right-6 bottom-6 left-6 font-display text-2xl leading-tight font-semibold tracking-[-0.02em]">From newborn screening to adult fittings.</p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { BrandOrbit } from "@/components/ui/brand-orbit";
 import CtaBanner from "@/components/CtaBanner";
 import FaqList from "@/components/FaqList";
@@ -6,7 +7,7 @@ import HearingAidCatalog from "@/components/HearingAidCatalog";
 import PageHero from "@/components/PageHero";
 import ShortPlayer from "@/components/ShortPlayer";
 import { Button, Container, Eyebrow, Heading } from "@/components/ui";
-import { accessories, perks, styles, whatsappLink } from "@/lib/hearing-aids";
+import { accessories, styles, whatsappLink } from "@/lib/hearing-aids";
 import { brandLogos } from "@/lib/home";
 import { getCategory } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -29,20 +30,6 @@ export default function HearingAidsPage() {
         title="Hearing aids that fit your life."
         intro="Genuine devices chosen from your test results and fitted by our audiologists. Try before you decide."
       />
-
-      {/* Perks */}
-      <section className="border-b border-line bg-white">
-        <Container className="flex flex-wrap justify-center gap-x-10 gap-y-3 py-5 md:justify-between">
-          {perks.map((p) => (
-            <span key={p} className="flex items-center gap-2.5 text-[15px] font-bold">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-soft text-sm text-brand-dark" aria-hidden>
-                ✓
-              </span>
-              {p}
-            </span>
-          ))}
-        </Container>
-      </section>
 
       {/* Brands */}
       <section className="overflow-hidden pt-16 pb-4 md:pt-24">
@@ -67,14 +54,17 @@ export default function HearingAidsPage() {
           <div className="flex max-w-[760px] flex-col gap-4">
             <Eyebrow>Types</Eyebrow>
             <Heading>Find the right style</Heading>
-            <p className="text-lg leading-relaxed text-ink-3">From powerful behind-the-ear models to near-invisible in-canal designs.</p>
+            <p className="text-lg leading-relaxed text-ink-3">From powerful behind-the-ear models to practically invisible in-canal designs.</p>
           </div>
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {styles.map((s) => (
-              <li key={s.code} className="flex items-start gap-5 rounded-[20px] border border-line bg-white p-6 shadow-card">
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-maroon font-display text-lg font-extrabold text-white">{s.code}</span>
+              <li key={s.code} className="flex items-center gap-5 rounded-[20px] border border-line bg-white p-5 shadow-card">
+                <span className="relative h-24 w-24 shrink-0">
+                  <Image src={s.image} alt={`${s.name} hearing aid shown in the ear`} fill sizes="96px" className="object-contain" />
+                </span>
                 <span className="flex flex-col gap-1.5">
-                  <span className="text-lg font-bold">{s.name}</span>
+                  <span className="text-sm font-bold text-brand-dark">{s.code}</span>
+                  <span className="text-lg leading-snug font-bold">{s.name}</span>
                   <span className="text-[15px] leading-relaxed text-ink-3">{s.desc}</span>
                 </span>
               </li>

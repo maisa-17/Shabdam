@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Hearing tests, hearing aid fitting, repairs, tinnitus care, children's hearing and speech therapy, snoring and sleep apnea, custom ear protection and ear care in Kochi.",
+    "Hearing tests, hearing aid fitting, repairs, tinnitus care, children's hearing and speech therapy, custom ear protection and assistive devices in Kochi.",
 };
 
 export default function ServicesPage() {
@@ -17,7 +17,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Our services"
-        title="11 specialities, one clinical standard."
+        title="9 specialities, one clinical standard."
         intro="Choose a service to see what it involves, who it helps and what to expect at your visit."
       />
 

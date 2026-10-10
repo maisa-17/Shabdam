@@ -14,15 +14,18 @@ export const aboutStats: Stat[] = [
   { big: "[XX,000]+", small: "Patients served" },
   { big: "4.9 ★", small: "360+ Google ratings" },
   { big: "3", small: "Branches in Kochi" },
-  { big: "11", small: "Service lines" },
+  { big: "9", small: "Service lines" },
 ];
 
+// The clinic opened in 2023; 2010 is when the founder started working in hearing care.
+export const founded = "2023";
+
 export const timeline: Milestone[] = [
-  { year: "2010", title: "First centre opens", desc: "[Confirm year and first location]" },
-  { year: "[Year]", title: "Thrippunithura branch", desc: "North Fort Road, near Vadakkekotta Metro. [Confirm year]" },
-  { year: "2018", title: "Thoppumpady branch", desc: "A dedicated audiology and speech unit at PT Jacob Road." },
-  { year: "[Year]", title: "Aluva branch", desc: "[Opening details]" },
-  { year: "Today", title: "3 branches, 11 service lines", desc: "Hearing, speech, tinnitus, sleep and ear care." },
+  { year: "2010", title: "Where it began", desc: "Our founder starts working in hearing care." },
+  { year: "2023", title: "Thrippunithura", desc: "Our first centre opens on North Fort Road, near Vadakkekotta Metro." },
+  { year: "2024", title: "Thoppumpady", desc: "Our second branch, at Thoppumpady Junction on PT Jacob Road." },
+  { year: "2025", title: "Aluva", desc: "Our third branch opens in Aluva." },
+  { year: "2026", title: "Angamaly", desc: "Our fourth branch, on Aluva Road at NH Junction. Opening soon." },
 ];
 
 // icon: SVG path data on a 24×24 stroke grid
@@ -36,8 +39,6 @@ export const values: Value[] = [
 export const facilities: Facility[] = [
   { title: "Sound-treated test rooms", desc: "Quiet booths for accurate hearing thresholds. [Confirm]", icon: "M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1v-6h3v4ZM3 19a2 2 0 0 0 2 2h1v-6H3v4Z" },
   { title: "Impedance audiometry", desc: "Tympanometry and reflex tests for middle-ear health.", icon: "M22 12h-4l-3 9L9 3l-3 9H2" },
-  { title: "OAE & BERA", desc: "Objective tests for newborns and young children.", icon: "M9 12h.01M15 12h.01M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5M19 6.3A9 9 0 1 1 5 6.3M12 3a3 3 0 0 0 0 6" },
-  { title: "Real-ear measurement", desc: "Verifies hearing aid output inside your own ear.", icon: "M6 8.5a6 6 0 1 1 12 0c0 3.5-3 4.5-3 7.5a3.5 3.5 0 0 1-6.5 1.8M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5" },
   { title: "Computerised programming", desc: "Manufacturer software for precise fitting and fine-tuning.", icon: "M2 4h20v12H2zM8 20h8M12 16v4" },
   { title: "Hygiene protocols", desc: "Instruments cleaned and disinfected after every patient.", icon: "M12 2.7 5.6 9.1a9 9 0 1 0 12.8 0L12 2.7Z" },
 ];

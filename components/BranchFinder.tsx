@@ -116,8 +116,8 @@ export default function BranchFinder() {
                         rel="noopener noreferrer"
                         className="mt-auto flex w-full items-center justify-center gap-2 rounded-[10px] border-2 border-white px-5 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-white/10 hover:text-white"
                       >
-                        {/* eslint-disable-next-line @next/next/no-img-element -- small static SVG icon */}
-                        <img src="/location-pin.svg" alt="" className="h-8 w-auto" />
+                        {/* eslint-disable-next-line @next/next/no-img-element -- small static icon */}
+                        <img src="/location-pin.webp" alt="" className="h-8 w-auto" />
                         Directions
                       </a>
                     )}
@@ -173,6 +173,24 @@ export default function BranchFinder() {
             </span>
             <h3 className="font-display text-[30px] leading-tight font-extrabold tracking-[-0.02em] md:text-[36px]">{br.name}</h3>
             <p className="text-[15px] text-ink-3">{br.opening}</p>
+            <div className="mt-2 flex flex-col gap-1.5 text-[15px] leading-relaxed text-ink-2">
+              <p className="flex gap-2">
+                <Icon d={pin} size={17} className="mt-1 shrink-0 text-brand" />
+                {br.address}
+              </p>
+              <p className="flex gap-2 text-ink-3">
+                <Icon d={flag} size={17} className="mt-1 shrink-0 text-brand" />
+                {br.landmark}
+              </p>
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery(br.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 self-start font-bold text-brand-dark underline-offset-4 hover:underline"
+              >
+                Get directions →
+              </a>
+            </div>
           </div>
 
           <a

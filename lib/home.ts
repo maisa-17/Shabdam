@@ -8,9 +8,9 @@ export type Stat = { big: string; small: string; icon: string };
 
 // Quick facts shown under the hero buttons. icon: SVG path data on a 24×24 stroke grid.
 export const heroStats: Stat[] = [
-  { big: "2010", small: "Serving Kochi", icon: "M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" },
+  { big: "2010", small: "In hearing care since", icon: "M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" },
   { big: "3", small: "Branches", icon: "M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Zm0-9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" },
-  { big: "11", small: "Services", icon: "M6 8.5a6 6 0 1 1 12 0c0 3.5-3 4.5-3 7.5a3.5 3.5 0 0 1-6.5 1.8M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5" },
+  { big: "9", small: "Services", icon: "M6 8.5a6 6 0 1 1 12 0c0 3.5-3 4.5-3 7.5a3.5 3.5 0 0 1-6.5 1.8M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5" },
   { big: "6", small: "Top brands", icon: "M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12ZM8.5 14 7 22l5-3 5 3-1.5-8" },
 ];
 
@@ -24,16 +24,16 @@ export const featuredServices: Feature[] = [
   { title: "Repair & Maintenance", desc: "Cleaning, reprogramming, firmware updates and batteries.", img: "Photo · hearing aid repair", href: "/services/repair-maintenance", photo: "repair" },
 ];
 
-// Brand tiles in the logo marquee. Add `src: "/brands/<name>.svg"` once official logos are supplied;
+// Brand tiles in the logo marquee. Add `src: "/brands/<name>.webp"` once official logos are supplied;
 // until then the brand name is shown as a wordmark. Gradients are approximate brand colours shown on hover.
 export const brandLogos = [
-  { alt: "Phonak", src: "/brands/phonak.svg", gradient: { from: "#E6F4CC", via: "#B8DE6E", to: "#8CC21F" } },
-  { alt: "ReSound", src: "/brands/resound.svg", gradient: { from: "#F8D7DC", via: "#E07A8A", to: "#A6192E" } },
-  { alt: "Oticon", src: "/brands/oticon.svg", gradient: { from: "#FBE3F1", via: "#EC9BCB", to: "#C8118C" } },
-  { alt: "Widex", src: "/brands/widex.svg", gradient: { from: "#F4F4F4", via: "#D6D6D6", to: "#9A9A9A" } },
-  { alt: "Unitron", src: "/brands/unitron.svg", gradient: { from: "#E0F6FE", via: "#9EDDF7", to: "#00AEEF" } },
-  { alt: "Rexton", src: "/brands/rexton.svg", gradient: { from: "#FFF7B3", via: "#FFEC4D", to: "#FFE500" } },
-  { alt: "Signia", src: "/brands/signia.svg", gradient: { from: "#FFE0E0", via: "#FF8080", to: "#FF0000" } },
+  { alt: "Phonak", src: "/brands/phonak.webp", gradient: { from: "#E6F4CC", via: "#B8DE6E", to: "#8CC21F" } },
+  { alt: "ReSound", src: "/brands/resound.webp", gradient: { from: "#F8D7DC", via: "#E07A8A", to: "#A6192E" } },
+  { alt: "Oticon", src: "/brands/oticon.webp", gradient: { from: "#FBE3F1", via: "#EC9BCB", to: "#C8118C" } },
+  { alt: "Widex", src: "/brands/widex.webp", gradient: { from: "#F4F4F4", via: "#D6D6D6", to: "#9A9A9A" } },
+  { alt: "Unitron", src: "/brands/unitron.webp", gradient: { from: "#E0F6FE", via: "#9EDDF7", to: "#00AEEF" } },
+  { alt: "Rexton", src: "/brands/rexton.webp", gradient: { from: "#FFF7B3", via: "#FFEC4D", to: "#FFE500" } },
+  { alt: "Signia", src: "/brands/signia.webp", gradient: { from: "#FFE0E0", via: "#FF8080", to: "#FF0000" } },
 ];
 
 // The 5-step patient process.

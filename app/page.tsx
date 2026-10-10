@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 import { brandLogos, featuredServices } from "@/lib/home";
 import { MarqueeLogoScroller } from "@/components/ui/marquee-logo-scroller";
 import { photos } from "@/lib/photos";
-import googleReviewsIcon from "@/public/google-reviews.svg";
+import googleReviewsIcon from "@/public/google-reviews.webp";
 import { reviews } from "@/lib/reviews";
 import { byTopic } from "@/lib/videos";
 
@@ -51,7 +51,7 @@ export default function Home() {
               href="/services"
               className="group inline-flex items-center gap-3 self-start rounded-full bg-ink py-2 pr-2 pl-6 font-bold text-white transition-colors hover:bg-brand hover:text-white md:self-auto"
             >
-              View all 11 services
+              View all 9 services
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand transition-colors group-hover:bg-white group-hover:text-brand">
                 <ArrowRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:-rotate-45" strokeWidth={2.2} />
               </span>

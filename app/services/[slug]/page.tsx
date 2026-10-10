@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AudioWaveform, Baby, Ear, Headphones, MessagesSquare, Moon, ShieldCheck, Stethoscope, Wrench, type LucideIcon } from "lucide-react";
+import { AudioWaveform, Baby, Ear, Headphones, MessagesSquare, ShieldCheck, Wrench, type LucideIcon } from "lucide-react";
 import { GradientCard, type CardGradient } from "@/components/ui/gradient-card";
 import CtaBanner from "@/components/CtaBanner";
 import FaqList from "@/components/FaqList";
@@ -19,9 +19,7 @@ const serviceIcons: Record<string, LucideIcon> = {
   tinnitus: AudioWaveform,
   pediatric: Baby,
   "speech-therapy": MessagesSquare,
-  "snoring-sleep-apnea": Moon,
   "ear-protection": ShieldCheck,
-  "ear-care": Stethoscope,
 };
 const cardGradients: CardGradient[] = ["rose", "sand", "blush", "peach"];
 const badgeColors = ["#E3000F", "#C4000D", "#FF6B74", "#7A1820"];

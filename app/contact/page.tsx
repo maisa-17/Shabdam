@@ -7,7 +7,7 @@ import PageHero from "@/components/PageHero";
 import { Container, Eyebrow, Heading, Icon } from "@/components/ui";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
-import googleReviewsStacked from "@/public/google-reviews-stacked.svg";
+import googleReviewsStacked from "@/public/google-reviews-stacked.webp";
 
 export const metadata: Metadata = {
   title: "Contact & Branches",
