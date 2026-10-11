@@ -4,27 +4,23 @@ import { MotionConfig, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { nav } from "@/lib/site";
-import { BranchList, BranchPanel, PhoneIcon } from "./CallPicker";
+import { nav, site } from "@/lib/site";
+import { PhoneIcon } from "./CallPicker";
 import { Button } from "./ui";
 
-type Panel = "menu" | "call" | null;
+type Panel = "menu" | null;
 
-function CallButton({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+// Every branch shares one number, so the phone icon dials it directly.
+function CallButton() {
   return (
-    <button
-      type="button"
-      aria-label="Call a branch"
-      title="Call a branch"
-      aria-expanded={open}
-      aria-haspopup="dialog"
-      onClick={onToggle}
-      className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
-        open ? "bg-brand text-white" : "bg-brand-soft text-brand-dark hover:bg-brand hover:text-white"
-      }`}
+    <a
+      href={site.phoneHref}
+      aria-label={`Call us on ${site.phone}`}
+      title={`Call ${site.phone}`}
+      className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-soft text-brand-dark transition-colors hover:bg-brand hover:text-white"
     >
       <PhoneIcon />
-    </button>
+    </a>
   );
 }
 
@@ -92,14 +88,14 @@ export default function NavLinks() {
         </nav>
       </MotionConfig>
       <div className="hidden items-center gap-5 lg:flex">
-        <CallButton open={panel === "call"} onToggle={() => toggle("call")} />
+        <CallButton />
         <Button href="/contact#enquiry" size="sm">
           Book Appointment
         </Button>
       </div>
 
       <div className="flex items-center gap-2 lg:hidden">
-        <CallButton open={panel === "call"} onToggle={() => toggle("call")} />
+        <CallButton />
         <button
           type="button"
           aria-label={panel === "menu" ? "Close menu" : "Open menu"}
@@ -112,10 +108,6 @@ export default function NavLinks() {
           </svg>
         </button>
       </div>
-
-      {panel === "call" && (
-        <BranchPanel onClose={close} className="absolute inset-x-0 top-full mt-2 lg:right-7 lg:left-auto lg:w-[340px]" />
-      )}
 
       {panel === "menu" && (
         <div className="absolute inset-x-0 top-full mt-2 rounded-2xl border border-line bg-white px-4 pb-6 shadow-lg lg:hidden">
@@ -135,9 +127,11 @@ export default function NavLinks() {
             <Button href="/contact#enquiry" onClick={close}>
               Book Appointment
             </Button>
+            <Button href={site.phoneHref} variant="outline" onClick={close}>
+              <PhoneIcon size={18} />
+              <span className="ml-2">Call {site.phone}</span>
+            </Button>
           </div>
-          <p className="mt-6 mb-3 text-sm font-bold tracking-[0.08em] text-ink-4 uppercase">Call a branch</p>
-          <BranchList onPick={close} />
         </div>
       )}
     </div>

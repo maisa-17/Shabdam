@@ -1,4 +1,5 @@
-import { CallMenu, PhoneIcon } from "./CallPicker";
+import { site } from "@/lib/site";
+import { PhoneIcon } from "./CallPicker";
 import { Button, Container } from "./ui";
 
 // Closing call-to-action banner used at the bottom of pages.
@@ -19,12 +20,12 @@ export default function CtaBanner({
           </div>
           <div className="flex shrink-0 flex-wrap gap-3.5">
             <Button href="/contact#enquiry">Book Appointment</Button>
-            <CallMenu
-              placement="top"
-              className="inline-flex items-center justify-center gap-2 rounded-[10px] border-2 border-white px-7 py-3.5 text-[17px] font-bold text-white transition-colors hover:bg-white/10"
+            <a
+              href={site.phoneHref}
+              className="inline-flex items-center justify-center gap-2 rounded-[10px] border-2 border-white px-7 py-3.5 text-[17px] font-bold text-white transition-colors hover:bg-white/10 hover:text-white"
             >
-              <PhoneIcon size={18} /> Call a branch
-            </CallMenu>
+              <PhoneIcon size={18} /> Call {site.phone}
+            </a>
           </div>
         </div>
       </Container>

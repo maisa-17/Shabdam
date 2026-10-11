@@ -24,7 +24,7 @@ export const timeline: Milestone[] = [
   { year: "2010", title: "Where it began", desc: "Our founder starts working in hearing care." },
   { year: "2023", title: "Thrippunithura", desc: "Our first centre opens on North Fort Road, near Vadakkekotta Metro." },
   { year: "2024", title: "Thoppumpady", desc: "Our second branch, at Thoppumpady Junction on PT Jacob Road." },
-  { year: "2025", title: "Aluva", desc: "Our third branch opens in Aluva." },
+  { year: "2025", title: "Aluva", desc: "Our third branch opens on Power House Road, Periyar Nagar." },
   { year: "2026", title: "Angamaly", desc: "Our fourth branch, on Aluva Road at NH Junction. Opening soon." },
 ];
 

@@ -54,7 +54,7 @@ export default function ContactPage() {
               <Eyebrow>Our branches</Eyebrow>
               <Heading>Find the branch nearest to you</Heading>
             </div>
-            <p className="max-w-[380px] text-lg leading-relaxed text-ink-3">Open a branch to see its map, landmark and direct phone number.</p>
+            <p className="max-w-[380px] text-lg leading-relaxed text-ink-3">Open a branch to see its address, landmark and map.</p>
           </Reveal>
           <Reveal delay={0.1}>
             <BranchFinder />

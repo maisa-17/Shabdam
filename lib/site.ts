@@ -5,8 +5,8 @@ export const site = {
   name: "Shabdham Hearing Aid Center",
   legalName: "Shabdham Hearing Aid Center", // [confirm spelling]
   tagline: "Hearing and speech care for every age across Kochi, built on our founder's experience since 2010.",
-  phone: "[PHONE]",
-  phoneHref: "tel:0000000000",
+  phone: "+91 90746 04737",
+  phoneHref: "tel:+919074604737",
   whatsapp: "+91 90746 04737",
   whatsappHref: "https://wa.me/919074604737",
   whatsappMessage: "Hi Shabdham, I'd like to know more about a hearing test.",
@@ -20,9 +20,9 @@ export const site = {
     googleReviews: "https://g.page/",
   },
   branches: [
-    { name: "Thoppumpady", short: "PT Jacob Road", address: "1, Ground Floor, Thoppumpady Junction, PT Jacob Road, Ernakulam 682005", landmark: "Between Mythri Chips & Rozario Bakery, near Our Lady Convent Church", phone: "+91 85908 36420", phoneHref: "tel:+918590836420", rating: "4.9 ★ · 113 Justdial ratings" },
-    { name: "Thrippunithura", short: "North Fort Road", address: "North Fort Road, Thrippunithura, Ernakulam [PIN — confirm]", landmark: "Opp. Old Sreekala Theatre, near Vadakkekotta Metro Station", phone: "+91 85901 39701", phoneHref: "tel:+918590139701", rating: "4.9 ★ · 250 Justdial ratings" },
-    { name: "Aluva", short: "[Address]", address: "[Full address]", landmark: "[Landmark]", phone: "+91 97783 36052", phoneHref: "tel:+919778336052", rating: "[Rating]" },
+    { name: "Thoppumpady", short: "PT Jacob Road", address: "1, Ground Floor, Thoppumpady Junction, PT Jacob Road, Ernakulam 682005", landmark: "Between Mythri Chips & Rozario Bakery, near Our Lady Convent Church", phone: "+91 90746 04737", phoneHref: "tel:+919074604737", rating: "4.9 ★ · 113 Justdial ratings" },
+    { name: "Thrippunithura", short: "North Fort Road", address: "North Fort Road, Thrippunithura, Ernakulam [PIN — confirm]", landmark: "Opp. Old Sreekala Theatre, near Vadakkekotta Metro Station", phone: "+91 90746 04737", phoneHref: "tel:+919074604737", rating: "4.9 ★ · 250 Justdial ratings" },
+    { name: "Aluva", short: "Power House Road", address: "Thyparambil Building, Power House Road, Periyar Nagar, Aluva, Kerala 683101", landmark: "Opposite Bandhan Bank", phone: "+91 90746 04737", phoneHref: "tel:+919074604737", rating: "[Rating]" },
   ],
   // Announced but not yet open: kept out of `branches` so they don't appear in call/enquiry lists.
   upcomingBranches: [
