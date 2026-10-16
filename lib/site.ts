@@ -11,6 +11,7 @@ export const site = {
   whatsappHref: "https://wa.me/919074604737",
   whatsappMessage: "Hi Shabdham, I'd like to know more about a hearing test.",
   email: "hearingaidfin@gmail.com",
+  gaId: "G-2VLEKK2QSS", // Google Analytics 4 measurement ID (public; it appears in the page source)
   hours: "10:00 am – 5:30 pm",
   workingDays: "Monday to Saturday",
   languages: ["Malayalam", "English", "Tamil", "Hindi"],
