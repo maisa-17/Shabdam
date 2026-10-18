@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { keywords } from "@/lib/seo";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import BranchFinder from "@/components/BranchFinder";
@@ -10,9 +11,11 @@ import { site } from "@/lib/site";
 import googleReviewsStacked from "@/public/google-reviews-stacked.webp";
 
 export const metadata: Metadata = {
-  title: "Contact & Branches",
+  title: "Contact & Branches – Thrippunithura, Thoppumpady, Aluva, Angamaly",
   description:
-    "Call, WhatsApp or visit Shabdham Hearing Aid Center at Thoppumpady, Thrippunithura or Aluva in Kochi. Branch addresses, maps, phone numbers and opening hours.",
+    "Visit Shabdham Hearing Aid Center in Thrippunithura (North Fort Road), Thoppumpady (PT Jacob Road) or Aluva (Power House Road), with Angamaly opening soon. Book a hearing test, call or WhatsApp +91 90746 04737. Open Monday to Saturday, 10 am – 5:30 pm.",
+  keywords: [...keywords.core, ...keywords.contact],
+  alternates: { canonical: "/contact" },
 };
 
 // Values still in [brackets] are unconfirmed placeholders; don't link them.

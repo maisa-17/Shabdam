@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { keywords } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -11,9 +12,11 @@ import { photos } from "@/lib/photos";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us – Hearing Care in Kochi Since 2023",
   description:
-    "Shabdham is a Kochi hearing and speech centre built on careful testing, honest advice and long-term aftercare, with branches in Thoppumpady, Thrippunithura and Aluva.",
+    "Shabdham Hearing Aid Center is a Kochi hearing and speech centre: hearing tests, hearing aid fitting and aftercare by audiologists, with branches in Thrippunithura, Thoppumpady and Aluva and Angamaly opening soon.",
+  keywords: [...keywords.core, "audiologist Thrippunithura", "speech and hearing centre Ernakulam"],
+  alternates: { canonical: "/about" },
 };
 
 const h2 = "font-display text-[clamp(38px,5.2vw,68px)] leading-[0.98] font-semibold tracking-[-0.045em]";

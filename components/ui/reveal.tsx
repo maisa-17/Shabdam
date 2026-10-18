@@ -1,21 +1,13 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
 
-import { MotionConfig, motion } from "framer-motion";
-import type { ReactNode } from "react";
-
-// Fades its children up once they scroll into view. Honours prefers-reduced-motion.
+// Fades its children up as they scroll into view, using a CSS scroll-driven animation (.reveal in globals.css).
+// No JavaScript: the content is visible in the HTML from the start, so it shows on slow networks, old phones
+// and with JavaScript off. Browsers without scroll-driven animations simply show it without the fade.
 export function Reveal({ children, delay = 0, y = 28, className = "" }: { children: ReactNode; delay?: number; y?: number; className?: string }) {
+  const style = { "--reveal-y": `${y}px`, "--reveal-delay": `${Math.round(delay * 100)}px` } as CSSProperties;
   return (
-    <MotionConfig reducedMotion="user">
-      <motion.div
-        initial={{ opacity: 0, y }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    </MotionConfig>
+    <div className={`reveal ${className}`} style={style}>
+      {children}
+    </div>
   );
 }

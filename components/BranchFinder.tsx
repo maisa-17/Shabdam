@@ -1,7 +1,6 @@
 "use client";
 
-import { MotionConfig, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Icon, Placeholder } from "./ui";
 import { whatsappLink } from "@/lib/hearing-aids";
 import { site } from "@/lib/site";
@@ -18,13 +17,51 @@ const clock = "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 6v6l4 2";
 const plus = "M12 5v14M5 12h14";
 const whatsapp = "M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5Z";
 
+// Whether <html> has the "lite" class (slow network / data saver / low memory, set by app/layout.tsx).
+// The server and first paint assume lite, so the ~1 MB Google Map never starts loading before we know.
+const noop = () => () => {};
+const useLite = () => useSyncExternalStore(noop, () => document.documentElement.classList.contains("lite"), () => true);
+
+// Google Map for a branch. On slow connections it waits for a tap; "Open in Google Maps" works even without JavaScript.
+function BranchMap({ name, address }: { name: string; address: string }) {
+  const lite = useLite();
+  const [requested, setRequested] = useState(false);
+  const q = mapQuery(address);
+  if (!lite || requested) {
+    return (
+      <iframe
+        title={`Map of the ${name} branch`}
+        src={`https://maps.google.com/maps?q=${q}&z=16&output=embed`}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="h-64 w-full min-w-0 rounded-[20px] border-0 lg:h-full"
+      />
+    );
+  }
+  return (
+    <div className="flex h-64 flex-col items-center justify-center gap-3 rounded-[20px] border border-white/15 bg-white/[0.06] p-6 text-center lg:h-full">
+      <Icon d={pin} size={28} className="text-[#ff6b74]" />
+      <button
+        type="button"
+        onClick={() => setRequested(true)}
+        className="rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-maroon transition-colors hover:bg-brand hover:text-white"
+      >
+        Show map
+      </button>
+      <a href={`https://www.google.com/maps/search/?api=1&query=${q}`} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blush underline-offset-4 hover:text-white hover:underline">
+        Open in Google Maps ↗
+      </a>
+    </div>
+  );
+}
+
 // Expanding branch cards, adapted from the Framer "Feature Flipper": open one branch and it widens
 // to show its map and details while the others shrink. Stacks vertically on mobile.
 export default function BranchFinder() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       <div className="flex flex-col gap-3 lg:h-[540px] lg:flex-row">
         {site.branches.map((b, i) => {
           const open = active === i;
@@ -77,13 +114,12 @@ export default function BranchFinder() {
               </div>
 
               {open ? (
-                <motion.div
+                /* CSS fade-in (.sh-rise) rather than JS, so the open branch shows even before scripts load */
+                <div
                   id={`branch-${i}`}
                   key="open"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative z-10 mt-6 grid flex-1 gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+                  className="sh-rise relative z-10 mt-6 grid flex-1 gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+                  style={{ animationDelay: "0.3s", animationDuration: "0.5s" }}
                 >
                   <div className="flex min-w-0 flex-col gap-5">
                     <div>
@@ -123,17 +159,11 @@ export default function BranchFinder() {
                     )}
                   </div>
                   {mapped ? (
-                    <iframe
-                      title={`Map of the ${b.name} branch`}
-                      src={`https://maps.google.com/maps?q=${mapQuery(b.address)}&z=16&output=embed`}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="h-64 w-full min-w-0 rounded-[20px] border-0 lg:h-full"
-                    />
+                    <BranchMap name={b.name} address={b.address} />
                   ) : (
                     <Placeholder dark label={`Map · ${b.name} [address to confirm]`} className="h-64 rounded-[20px] lg:h-full" />
                   )}
-                </motion.div>
+                </div>
               ) : (
                 <div className="relative z-10 mt-auto flex flex-col gap-1.5 pt-10">
                   <h3
@@ -206,6 +236,6 @@ export default function BranchFinder() {
           </a>
         </div>
       ))}
-    </MotionConfig>
+    </>
   );
 }

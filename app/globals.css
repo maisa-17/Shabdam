@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Component stylesheets that are not Tailwind classes. Imported here (not from the component) so the
+   cascade-layers PostCSS step processes them together with Tailwind and they keep the right priority. */
+@import "../components/ui/ink-orbit-testimonials.css";
 
 @theme inline {
   --color-brand: #e3000f;
@@ -148,4 +151,35 @@
   .sh-hero *::after {
     animation: none !important;
   }
+}
+
+/* ---------- Scroll reveal (components/ui/reveal.tsx) ----------
+   Pure CSS: content is visible by default and only animates where scroll-driven animations are supported,
+   so nothing is hidden behind JavaScript on slow networks or older phones. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    /* Fixed distances so tall blocks are fully visible after ~180px of scrolling, not half-faded while read */
+    animation-range: entry var(--reveal-delay, 0px) entry calc(180px + var(--reveal-delay, 0px));
+  }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(var(--reveal-y, 28px)); }
+}
+
+/* ---------- Low-end / slow-network mode ----------
+   `lite` is set on <html> by a tiny inline script (app/layout.tsx) on data-saver, 2G/3G or low-memory devices.
+   It switches off the heaviest effects: large animated blurs and the particle canvas. */
+.lite .sh-bg,
+.lite .sh-bg *,
+.lite .logo-marquee { animation: none !important; }
+.lite .sh-sweep,
+.lite .sh-blob { filter: none; opacity: 0.25; }
+.lite .sh-waves { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-rise,
+  .sh-slide,
+  .reveal { animation: none !important; }
 }

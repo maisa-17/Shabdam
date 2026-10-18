@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { keywords } from "@/lib/seo";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import PageHero from "@/components/PageHero";
@@ -7,9 +8,11 @@ import { categories, categoryHref, subHref } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Hearing Tests, Hearing Aid Fitting & Speech Therapy Services",
   description:
-    "Hearing tests, hearing aid fitting, repairs, tinnitus care, children's hearing and speech therapy, custom ear protection and assistive devices in Kochi.",
+    "Hearing tests (pure tone audiometry, impedance audiometry, OAE), hearing aid trial, fitting and repair, tinnitus care, children's hearing and speech therapy, custom ear protection and assistive devices in Kochi.",
+  keywords: [...keywords.services, "audiologist in Kochi"],
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

@@ -1,0 +1,57 @@
+/* Styles for ink-orbit-testimonials.tsx, imported from app/globals.css so it goes through PostCSS
+   with the rest of the site and keeps the right priority over Tailwind on older browsers. */
+.it-root{--it-page:#efefef;--it-hatch:rgba(0,0,0,.06);--it-paper:#fbfbfb;--it-card:#f4f4f4;--it-raise:#ffffff;--it-ink:#151515;--it-soft:#3d3d3d;--it-muted:#7b7b7b;--it-faint:#a8a8a8;--it-line:#e2e2e2;--it-line-strong:#cfcfcf;--it-bracket:#c9c9c9;--it-shadow:0 1px 2px rgba(0,0,0,.05),0 8px 24px -12px rgba(0,0,0,.12);--it-sans:"Manrope","Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;position:relative;width:100%;box-sizing:border-box;background-color:var(--it-page);background-image:repeating-linear-gradient(135deg,var(--it-hatch) 0 1px,transparent 1px 10px);color:var(--it-ink);font-family:var(--it-sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;padding:28px clamp(10px,2.4vw,28px);transition:background-color .45s ease,color .45s ease}
+.it-root[data-theme="dark"]{--it-page:#0b0b0b;--it-hatch:rgba(255,255,255,.05);--it-paper:#121212;--it-card:#181818;--it-raise:#1e1e1e;--it-ink:#eeeeee;--it-soft:#c9c9c9;--it-muted:#8d8d8d;--it-faint:#5d5d5d;--it-line:#262626;--it-line-strong:#363636;--it-bracket:#444444;--it-shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7)}
+.it-root :where(*){box-sizing:border-box}
+.it-root :focus-visible{outline:2px solid var(--it-ink);outline-offset:2px}
+.it-root :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer}
+.it-root :where(svg){display:block;max-width:none;flex:none}
+.it-root :where(img){display:block;max-width:none}
+.it-root :where(h2,figure,blockquote){margin:0;padding:0;font-size:inherit;font-weight:inherit}
+.it-shell{width:100%;max-width:1180px;margin:0 auto;container-type:inline-size}
+.it-sec{position:relative;background:var(--it-paper);border:1px solid var(--it-line);padding:clamp(36px,6cqw,72px) clamp(16px,4cqw,48px);transition:background-color .45s,border-color .45s}
+@supports (animation-timeline:view()){.it-reveal{animation:it-reveal linear both;animation-timeline:view();animation-range:entry 0px entry 160px}}
+@keyframes it-reveal{from{opacity:0;transform:translateY(18px)}}
+.it-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:clamp(28px,4.5cqw,52px)}
+.it-tag{display:inline-block;padding:4px 10px;font-size:11.5px;letter-spacing:.02em;color:var(--it-soft);background:var(--it-card);border:1px solid var(--it-line)}
+.it-h2{font-size:clamp(28px,4.4cqw,44px);line-height:1.08;letter-spacing:-.025em;font-weight:500}
+.it-h2>span{display:block}
+.it-muted{color:var(--it-faint)}
+.it-frame{position:relative}
+.it-c{position:absolute;width:12px;height:12px;border-color:var(--it-bracket);border-style:solid;border-width:0;pointer-events:none}
+.it-c-tl{top:-6px;left:-6px;border-top-width:1.5px;border-left-width:1.5px}
+.it-c-tr{top:-6px;right:-6px;border-top-width:1.5px;border-right-width:1.5px}
+.it-c-bl{bottom:-6px;left:-6px;border-bottom-width:1.5px;border-left-width:1.5px}
+.it-c-br{bottom:-6px;right:-6px;border-bottom-width:1.5px;border-right-width:1.5px}
+.it-tframe{padding:clamp(18px,3cqw,34px) clamp(8px,2cqw,26px);border:1px solid var(--it-line)}
+.it-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:clamp(12px,2cqw,22px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:8px 6px 10px;scroll-behavior:smooth}
+.it-track::-webkit-scrollbar{display:none}
+@container (min-width:560px){.it-track{grid-auto-columns:calc((100% - clamp(12px,2cqw,22px)) / 2)}}
+@container (min-width:900px){.it-track{grid-auto-columns:calc((100% - 2 * clamp(12px,2cqw,22px)) / 3)}}
+.it-quote{scroll-snap-align:start;display:flex;flex-direction:column;gap:18px;min-height:268px;padding:22px 20px 18px;background:var(--it-card);border:1px solid var(--it-line-strong);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,background-color .45s}
+.it-quote:hover{transform:translateY(-4px);box-shadow:var(--it-shadow);background:var(--it-raise)}
+.it-stars{display:flex;gap:3px;color:var(--it-ink)}
+.it-stars .it-off{color:var(--it-line-strong)}
+.it-quote blockquote{position:relative;font-size:clamp(15px,1.6cqw,17px);line-height:1.45;letter-spacing:-.01em;padding:0 22px 0 18px;color:var(--it-ink)}
+.it-qm{position:absolute;color:var(--it-ink)}
+.it-who{display:flex;align-items:center;gap:11px;margin-top:auto;font-size:12.5px;color:var(--it-soft)}
+.it-who>span:first-child{width:38px;height:38px;flex:none;overflow:hidden;border:1px solid var(--it-line-strong)}
+.it-initials{display:grid;place-items:center;width:100%;height:100%;background:var(--it-raise);color:var(--it-ink);font-size:12px;font-weight:700;letter-spacing:.02em}
+.it-tnav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px}
+.it-icon-btn{display:inline-grid;place-items:center;width:34px;height:34px;color:var(--it-muted);border:1px solid transparent;transition:color .2s,border-color .2s}
+.it-icon-btn:hover{color:var(--it-ink);border-color:var(--it-line)}
+.it-dots{display:flex;gap:6px}
+.it-dot{width:6px;height:6px;border-radius:99px;background:var(--it-line-strong);transition:width .35s cubic-bezier(.2,.8,.2,1),background-color .3s}
+.it-dot[aria-current="true"]{width:20px;background:var(--it-ink)}
+.it-marquee{position:relative;overflow:hidden;margin-top:clamp(24px,3.5cqw,40px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.it-marquee-row{display:flex;width:max-content;gap:clamp(36px,5cqw,64px);animation:it-marq var(--it-marq,34s) linear infinite;padding:6px 0}
+.it-marquee:hover .it-marquee-row{animation-play-state:paused}
+.it-logo{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:19px;letter-spacing:-.04em;color:var(--it-soft);opacity:.8;white-space:nowrap;transition:opacity .25s,color .25s}
+.it-logo:hover{opacity:1;color:var(--it-ink)}
+@keyframes it-marq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+.it-reveal{animation:none}
+.it-marquee-row{animation:none}
+.it-track{scroll-behavior:auto}
+.it-quote,.it-dot{transition:none}
+}

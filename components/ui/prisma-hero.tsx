@@ -207,6 +207,8 @@ const PrismaHero = () => {
     const hero = heroRef.current;
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
+    // Slow network or low-end device (see liteModeScript in app/layout.tsx): skip the particle canvas entirely.
+    if (document.documentElement.classList.contains("lite")) return;
     if (!hero || !canvas || !ctx) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

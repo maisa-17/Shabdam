@@ -33,7 +33,14 @@ export const dynamicParams = false;
 export async function generateMetadata(props: PageProps<"/services/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const c = getCategory(slug);
-  return c ? { title: c.title, description: c.intro } : {};
+  return c
+    ? {
+        title: `${c.title} in Kochi`,
+        description: c.intro,
+        keywords: [c.title, `${c.title} Kochi`, `${c.title} Ernakulam`, ...c.subs.map((s) => `${s.name} Kochi`)],
+        alternates: { canonical: `/services/${c.slug}` },
+      }
+    : {};
 }
 
 export default async function ServiceCategoryPage(props: PageProps<"/services/[slug]">) {

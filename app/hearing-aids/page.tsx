@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { keywords } from "@/lib/seo";
 import Image from "next/image";
 import { BrandOrbit } from "@/components/ui/brand-orbit";
 import CtaBanner from "@/components/CtaBanner";
@@ -14,7 +15,9 @@ import { site } from "@/lib/site";
 import { byTopic } from "@/lib/videos";
 
 export const metadata: Metadata = {
-  title: "Hearing Aids",
+  title: "Hearing Aids in Kochi – Invisible, Rechargeable, RIE & BTE",
+  keywords: [...keywords.hearingAids, "hearing aid dealers in Ernakulam"],
+  alternates: { canonical: "/hearing-aids" },
   description:
     "Genuine BTE, RIC, invisible, rechargeable and Bluetooth hearing aids from Signia, Phonak, Widex, ReSound, Starkey and Oticon — chosen from your test results, with a free trial, in Kochi.",
 };

@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // AVIF is ~20–30% smaller than WebP; browsers without AVIF support get WebP.
+    formats: ["image/avif", "image/webp"],
     // YouTube video thumbnails
     remotePatterns: [new URL("https://i.ytimg.com/vi/**")],
   },
