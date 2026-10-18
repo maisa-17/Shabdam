@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shabdham Hearing Aid Center — Website
 
-## Getting Started
+Marketing website for [Shabdham Hearing Aid Center](https://www.shabdhamhearaid.com), a hearing and speech care clinic with branches across Kochi (Thoppumpady, Thrippunithura, Aluva, and Angamaly opening soon).
 
-First, run the development server:
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) (App Router) with React 19 and TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com) (configured in `app/globals.css` — there is no `tailwind.config` file)
+- [Framer Motion](https://motion.dev) for animation, [lucide-react](https://lucide.dev) for icons
+- Google Analytics 4 via `@next/third-parties`
+
+> **Note:** Next.js 16 has breaking changes from earlier versions. Check the docs in `node_modules/next/dist/docs/` before using an unfamiliar API (see [AGENTS.md](AGENTS.md)).
+
+## Getting started
+
+Requires Node.js 20 or later.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script          | What it does                     |
+| --------------- | -------------------------------- |
+| `npm run dev`   | Start the development server     |
+| `npm run build` | Create a production build        |
+| `npm run start` | Serve the production build       |
+| `npm run lint`  | Run ESLint                       |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+app/                  Routes (App Router)
+  page.tsx            Home
+  about/              About the clinic
+  services/           Services list and /services/[slug] detail pages
+  hearing-aids/       Hearing aid catalogue
+  contact/            Branches and enquiry form
+  sitemap.ts          Generated sitemap.xml
+  robots.ts           Generated robots.txt
+components/           Page sections (Header, Footer, EnquiryForm, ...)
+  ui/                 Reusable visual building blocks
+lib/                  Site content and configuration
+public/               Images, brand logos and favicons
+brand/                Source brand assets (favicons)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Most of the site's text lives in plain TypeScript data files in `lib/`, so content can be updated without touching components:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| File                 | Contents                                                        |
+| -------------------- | --------------------------------------------------------------- |
+| `lib/site.ts`        | Clinic name, phone, WhatsApp, email, hours, branches, nav links |
+| `lib/services.ts`    | Service categories and sub-services                             |
+| `lib/hearing-aids.ts`| Hearing aid styles and catalogue                                |
+| `lib/home.ts`        | Home page content                                               |
+| `lib/about.ts`       | About page content                                              |
+| `lib/reviews.ts`     | Patient reviews                                                 |
+| `lib/videos.ts`      | YouTube Shorts shown on the site                                |
+| `lib/photos.ts`      | Site photos, referenced by key from the other data files        |
+| `lib/seo.ts`         | Site URL, search keywords and structured data                   |
 
-## Deploy on Vercel
+Values written in `[brackets]` are placeholders still to be confirmed with the clinic. Search for `[` in `lib/` to find them before launch.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How enquiries work
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+There is no backend. The enquiry form on `/contact` builds a message from the form fields and opens it in WhatsApp, addressed to the number in `lib/site.ts`. `/book-appointment` redirects to the enquiry form (see `next.config.ts`).
+
+## SEO
+
+- Canonical URLs, the sitemap and structured data use `https://www.shabdhamhearaid.com` (set in `lib/seo.ts`).
+- Default metadata is set in `app/layout.tsx`. The inner pages override it with their own `metadata` or `generateMetadata`.
+- The Google Analytics measurement ID is set in `lib/site.ts` (`gaId`).
+
+## Deployment
+
+Any Node.js host that supports Next.js will work, such as [Vercel](https://vercel.com). Run `npm run build` and then `npm run start`, or connect the repository to Vercel for automatic deploys.
